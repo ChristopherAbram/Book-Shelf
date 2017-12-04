@@ -1,10 +1,11 @@
-package com.example.r9_bl.bookshelf;
+package com.example.r9_bl.bookshelf.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+
+import com.example.r9_bl.bookshelf.R;
 
 public class FrontActivity extends Activity {
 

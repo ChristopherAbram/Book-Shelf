@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.r9_bl.bookshelf">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,55 +11,56 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LandingActivity">
+        <activity android:name=".activity.LandingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name="service.AuthenticationService"/>
         <activity
-            android:name=".HomeActivity"
+            android:name=".activity.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".FrontActivity" />
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".SignUpActivity" />
+        <activity android:name=".activity.FrontActivity" />
+        <activity android:name=".activity.SignInActivity" />
+        <activity android:name=".activity.SignUpActivity" />
         <activity
-            android:name=".ShoppingCartActivity"
+            android:name=".activity.ShoppingCartActivity"
             android:label="Shopping Cart">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HomeActivity" />
+                android:value=".activity.HomeActivity" />
         </activity>
         <activity
-            android:name=".AccountActivity"
+            android:name=".activity.AccountActivity"
             android:label="Account">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HomeActivity" />
+                android:value=".activity.HomeActivity" />
         </activity>
         <activity
-            android:name=".HistoryActivity"
+            android:name=".activity.HistoryActivity"
             android:label="Your History">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HomeActivity" />
+                android:value=".activity.HomeActivity" />
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".activity.SettingsActivity"
             android:label="Settings">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HomeActivity" />
+                android:value=".activity.HomeActivity" />
         </activity>
         <activity
-            android:name=".CategoriesActivity"
+            android:name=".activity.CategoriesActivity"
             android:label="Categories">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HomeActivity" />
+                android:value=".activity.HomeActivity" />
         </activity>
-        <activity android:name=".ItemActivity"></activity>
+        <activity android:name=".activity.ItemActivity"></activity>
     </application>
 
 </manifest>

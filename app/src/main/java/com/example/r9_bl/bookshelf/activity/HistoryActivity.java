@@ -1,7 +1,9 @@
-package com.example.r9_bl.bookshelf;
+package com.example.r9_bl.bookshelf.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.example.r9_bl.bookshelf.R;
 
 public class HistoryActivity extends AppCompatActivity {
 

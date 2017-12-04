@@ -65,11 +65,13 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/email"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorAlmostWhite"
-                android:textColor="@color/colorAlmostWhite"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:text="admin@gmail.com"
+                android:textColor="@color/colorAlmostWhite" />
 
         </LinearLayout>
 
@@ -86,11 +88,13 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/password"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorAlmostWhite"
-                android:textColor="@color/colorAlmostWhite"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:text="password"
+                android:textColor="@color/colorAlmostWhite" />
 
         </LinearLayout>
 
@@ -116,6 +120,12 @@
             android:layout_height="wrap_content"
             android:text="Forgot your password?"
             android:layout_marginTop="15dp" />
+
+        <TextView
+            android:id="@+id/token"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
     </LinearLayout>
 
