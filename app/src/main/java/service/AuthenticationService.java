@@ -3,6 +3,7 @@ package service;
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.ResultReceiver;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -34,7 +35,8 @@ public class AuthenticationService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
 
         Bundle extras = intent.getExtras();
-        User user = (User) extras.get("user");
+        User user = (User) intent.getParcelableExtra("user");
+        ResultReceiver receiver = (ResultReceiver) intent.getParcelableExtra("receiver");
 
         Log.d(TAG, user.getEmail() + ", " + user.getPassword());
 
@@ -53,6 +55,11 @@ public class AuthenticationService extends IntentService {
         try {
             Response<CsrfToken> result = call.execute();
             Log.d(TAG, "Code: " + result.body().getToken());
+
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("csrf", result.body());
+            receiver.send(0, bundle);
+
         } catch (IOException e) {
             Log.d(TAG, e.getMessage());
         }

@@ -3,18 +3,23 @@ package com.example.r9_bl.bookshelf.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.r9_bl.bookshelf.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import data.CsrfToken;
 import data.User;
 import service.AuthenticationService;
+import service.receiver.RequestResultListener;
+import service.receiver.RequestResultReceiver;
 
 public class SignInActivity extends Activity {
 
@@ -32,6 +37,8 @@ public class SignInActivity extends Activity {
     @BindView(R.id.sign_in)
     Button mSignIn;
 
+    private RequestResultReceiver mResultReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +46,19 @@ public class SignInActivity extends Activity {
 
         ButterKnife.bind(this);
 
+        // Instantiate RequestResultReceiver and listener:
+        mResultReceiver = new RequestResultReceiver(new Handler());
+        mResultReceiver.setRequestResultListener(new RequestResultListener() {
+            @Override
+            public void onReceiveResult(int resultCode, Bundle resultData) {
+                if(resultData.containsKey("csrf")) {
+                    CsrfToken csrf = (CsrfToken) resultData.getParcelable("csrf");
+                    Toast.makeText(SignInActivity.this, csrf.getToken(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        // Set up click listener:
         mSignIn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -50,10 +70,13 @@ public class SignInActivity extends Activity {
                 // Set up intent:
                 Intent intent = new Intent(SignInActivity.this, AuthenticationService.class);
                 intent.putExtra("user", user);
+                intent.putExtra("receiver", mResultReceiver);
                 startService(intent);
             }
         });
     }
+
+
 
     private User getUserDataFromView(){
         User user = new User();
