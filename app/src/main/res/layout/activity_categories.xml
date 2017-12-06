@@ -7,4 +7,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.r9_bl.bookshelf.activity.CategoriesActivity">
 
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="14" />
+
 </android.support.constraint.ConstraintLayout>

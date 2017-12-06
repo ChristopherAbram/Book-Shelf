@@ -7,4 +7,5 @@
     <!--Extras-->
     <color name="colorAlmostWhite">#EFEFEF</color>
     <color name="colorSemiWhite">#CDCDCD</color>
+    <color name="colorGrayWhite">#9F9F9F</color>
 </resources>

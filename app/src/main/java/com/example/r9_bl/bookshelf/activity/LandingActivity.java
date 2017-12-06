@@ -22,7 +22,7 @@ public class LandingActivity extends Activity {
         progressBar = findViewById(R.id.loading_bar);
 
         //Should be replace with cache login on device
-        loggedOn = false;
+        loggedOn = true;
 
         new MyTask().execute();
     }

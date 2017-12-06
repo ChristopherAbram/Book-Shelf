@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.example.r9_bl.bookshelf.R;
 
@@ -83,5 +85,20 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void toCategories(View view) {
+        Intent intent = new Intent(this, CategoriesActivity.class);
+        startActivity(intent);
+    }
+
+    public void toItem(View view) {
+        Intent intent = new Intent(this, ItemActivity.class);
+        startActivity(intent);
+    }
+
+    public void toItems(View view) {
+        Intent intent = new Intent(this, ItemsActivity.class);
+        startActivity(intent);
     }
 }
