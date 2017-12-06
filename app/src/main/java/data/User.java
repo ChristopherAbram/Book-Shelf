@@ -137,4 +137,7 @@ public class User implements Parcelable {
             return new User[size];
         }
     };
+
+    public String getPassword(){ return password; }
+    public String getEmail() { return email; }
 }

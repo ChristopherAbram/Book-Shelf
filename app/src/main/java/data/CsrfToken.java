@@ -46,4 +46,6 @@ public class CsrfToken implements Parcelable {
             return new CsrfToken[size];
         }
     };
+
+    public String getToken() { return token; }
 }

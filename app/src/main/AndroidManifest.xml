@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -61,6 +62,18 @@
                 android:value=".activity.HomeActivity" />
         </activity>
         <activity android:name=".activity.ItemActivity"></activity>
+
+        <activity android:name=".activity.SearchActivity"
+            android:label="string/searchResults">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable"
+                />
+        </activity>
+
     </application>
 
 </manifest>
