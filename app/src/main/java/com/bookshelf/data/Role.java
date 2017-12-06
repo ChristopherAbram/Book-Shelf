@@ -1,7 +1,9 @@
-package data;
+package com.bookshelf.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
 
@@ -35,9 +37,12 @@ public class Role implements Parcelable {
     }
 
 
-    private int id;
-    private Level accessLevel;
-    private RoleName name;
+    private Integer id;
+
+    @SerializedName("access_level")
+    private Integer accessLevel;
+
+    private String name;
 
 
     @Override
@@ -47,17 +52,15 @@ public class Role implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
-        dest.writeInt(this.accessLevel == null ? -1 : this.accessLevel.ordinal());
-        dest.writeInt(this.name == null ? -1 : this.name.ordinal());
+        dest.writeString(this.name);
+        dest.writeValue(this.id);
+        dest.writeValue(this.accessLevel);
     }
 
     protected Role(Parcel in) {
-        this.id = in.readInt();
-        int tmpAccessLevel = in.readInt();
-        this.accessLevel = tmpAccessLevel == -1 ? null : Level.values()[tmpAccessLevel];
-        int tmpName = in.readInt();
-        this.name = tmpName == -1 ? null : RoleName.values()[tmpName];
+        this.name = in.readString();
+        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.accessLevel = (Integer) in.readValue(Integer.class.getClassLoader());
     }
 
     public static final Parcelable.Creator<Role> CREATOR = new Parcelable.Creator<Role>() {

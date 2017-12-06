@@ -1,9 +1,9 @@
-package com.example.r9_bl.bookshelf.activity;
+package com.bookshelf.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.r9_bl.bookshelf.R;
+import com.bookshelf.R;
 
 public class ItemActivity extends AppCompatActivity {
 

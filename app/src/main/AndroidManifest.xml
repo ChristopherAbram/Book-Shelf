@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.r9_bl.bookshelf">
+    package="com.bookshelf">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".application.ShopApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,55 +20,54 @@
             </intent-filter>
         </activity>
 
-        <service android:name="service.AuthenticationService" />
+        <service android:name="com.bookshelf.service.AuthenticationService" />
 
         <activity
-            android:name=".activity.HomeActivity"
+            android:name="com.bookshelf.activity.authorized.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.FrontActivity" />
-        <activity android:name=".activity.SignInActivity" />
-        <activity android:name=".activity.SignUpActivity" />
+        <activity android:name="com.bookshelf.activity.FrontActivity" />
         <activity
-            android:name=".activity.ShoppingCartActivity"
+            android:name="com.bookshelf.activity.SignInActivity"
+            android:noHistory="true"/>
+
+        <activity android:name="com.bookshelf.activity.SignUpActivity" />
+        <activity
+            android:name="com.bookshelf.activity.ShoppingCartActivity"
             android:label="Shopping Cart">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.HomeActivity" />
+                android:value="com.bookshelf.activity.authorized.HomeActivity" />
         </activity>
         <activity
-            android:name=".activity.AccountActivity"
+            android:name="com.bookshelf.activity.AccountActivity"
             android:label="Account">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.HomeActivity" />
+                android:value="com.bookshelf.activity.authorized.HomeActivity" />
         </activity>
         <activity
-            android:name=".activity.HistoryActivity"
+            android:name="com.bookshelf.activity.HistoryActivity"
             android:label="Your History">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.HomeActivity" />
+                android:value="com.bookshelf.activity.authorized.HomeActivity" />
         </activity>
         <activity
-            android:name=".activity.SettingsActivity"
+            android:name="com.bookshelf.activity.SettingsActivity"
             android:label="Settings">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.HomeActivity" />
+                android:value="com.bookshelf.activity.authorized.HomeActivity" />
         </activity>
         <activity
-            android:name=".activity.CategoriesActivity"
+            android:name="com.bookshelf.activity.CategoriesActivity"
             android:label="Categories">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.HomeActivity" />
+                android:value="com.bookshelf.activity.authorized.HomeActivity" />
         </activity>
-        <activity android:name=".activity.ItemActivity" />
+        <activity android:name="com.bookshelf.activity.ItemActivity" />
 
-        <service
-            android:name="service.RequestService"
-            android:enabled="true"
-            android:exported="true"></service>
     </application>
 
 </manifest>

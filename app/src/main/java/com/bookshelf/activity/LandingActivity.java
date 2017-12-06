@@ -1,4 +1,4 @@
-package com.example.r9_bl.bookshelf.activity;
+package com.bookshelf.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ProgressBar;
 
-import com.example.r9_bl.bookshelf.R;
+import com.bookshelf.R;
+import com.bookshelf.activity.authorized.HomeActivity;
+import com.bookshelf.service.AuthenticationService;
 
 public class LandingActivity extends Activity {
 
@@ -23,6 +25,9 @@ public class LandingActivity extends Activity {
 
         //Should be replace with cache login on device
         loggedOn = false;
+
+        Intent intent = new Intent(this, AuthenticationService.class);
+        startService(intent);
 
         new MyTask().execute();
     }

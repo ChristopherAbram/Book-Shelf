@@ -1,9 +1,9 @@
-package com.example.r9_bl.bookshelf.activity;
+package com.bookshelf.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.example.r9_bl.bookshelf.R;
+import com.bookshelf.R;
 
 public class SignUpActivity extends Activity {
 

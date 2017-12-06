@@ -1,4 +1,4 @@
-package service.receiver;
+package com.bookshelf.service.receiver;
 
 import android.os.Bundle;
 

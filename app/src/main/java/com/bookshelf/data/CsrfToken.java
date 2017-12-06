@@ -1,10 +1,9 @@
-package data;
+package com.bookshelf.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
-
 import lombok.Data;
 
 /**
@@ -13,10 +12,9 @@ import lombok.Data;
 
 @Data
 public class CsrfToken implements Parcelable {
+
     @SerializedName("csrf_token")
     private String token;
-
-
 
     @Override
     public int describeContents() {

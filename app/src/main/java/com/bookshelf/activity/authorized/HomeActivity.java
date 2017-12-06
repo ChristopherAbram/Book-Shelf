@@ -1,4 +1,4 @@
-package com.example.r9_bl.bookshelf.activity;
+package com.bookshelf.activity.authorized;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,20 +6,42 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.r9_bl.bookshelf.R;
+import com.bookshelf.R;
+import com.bookshelf.activity.AccountActivity;
+import com.bookshelf.activity.BaseActivity;
+import com.bookshelf.activity.HistoryActivity;
+import com.bookshelf.activity.SettingsActivity;
+import com.bookshelf.activity.ShoppingCartActivity;
+import com.bookshelf.api.RoleService;
+import com.bookshelf.data.Role;
 
-public class HomeActivity extends AppCompatActivity
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Response;
+
+public class HomeActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private final String TAG = getClass().getName();
+
+    @BindView(R.id.text)
+    TextView mRoles;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        ButterKnife.bind(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -31,6 +53,15 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        RoleService roles = generateCallService(RoleService.class);
+        Call<Role> call = roles.getRoleById(1);
+        call.enqueue(new RoleCallback());
     }
 
     @Override
@@ -83,5 +114,25 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private class RoleCallback extends Callback<Role> {
+        @Override
+        public void onResponse(Call<Role> call, Response<Role> response) {
+            super.onResponse(call, response);
+
+            if(response.isSuccessful()){
+                mRoles.setText(response.body().toString());
+            }
+            else
+                Toast.makeText(HomeActivity.this, "Unable to get role...", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onFailure(Call<Role> call, Throwable t) {
+            super.onFailure(call, t);
+
+            Toast.makeText(HomeActivity.this, "Something went wrong...", Toast.LENGTH_LONG).show();
+        }
     }
 }
