@@ -7,7 +7,7 @@ import android.util.Log;
 import com.bookshelf.application.Constants;
 import com.bookshelf.application.ShopApplication;
 import com.bookshelf.data.CsrfToken;
-import com.bookshelf.security.UnsafeOkHttpClient;
+import com.bookshelf.security.OkHttpClientFactory;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -58,13 +58,15 @@ abstract public class BaseActivity extends AppCompatActivity {
     }
 
     private OkHttpClient createOkHttpClient(){
-        UnsafeOkHttpClient.setCookies(cookies);
-        UnsafeOkHttpClient.setCsrfToken(csrfToken != null ? csrfToken.getToken() : "");
+        //UnsafeOkHttpClient.setCookies(cookies);
+        //UnsafeOkHttpClient.setCsrfToken(csrfToken != null ? csrfToken.getToken() : "");
 
         Log.d(TAG, "Cookies: "  + cookies);
         Log.d(TAG, "Csrf: "  + (csrfToken != null ? csrfToken.getToken() : ""));
 
-        return UnsafeOkHttpClient.getUnsafeOkHttpClient();
+        return OkHttpClientFactory.getTrustedOkHttpClient(
+                (csrfToken != null ? csrfToken.getToken() : ""),
+                cookies);
     }
 
     private void buildRetrofitInstance(){
