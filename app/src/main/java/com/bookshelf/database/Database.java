@@ -1,22 +1,14 @@
-package DB;
+package com.bookshelf.database;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
-import android.text.TextUtils;
 import android.util.Log;
 
-
-import com.example.r9_bl.bookshelf.R;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 /**
  * Created by Maksim on 12/6/2017.
@@ -82,9 +74,9 @@ public class Database {
         }
 
         private void loadWords() throws IOException {
-            final Resources resources = mHelperContext.getResources();
-            InputStream inputStream = resources.openRawResource(R.raw.definitions);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            /*final Resources resources = mHelperContext.getResources();
+            //InputStream inputStream = resources.openRawResource(R.raw.definitions);
+            //BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
             try {
                 String line;
@@ -98,7 +90,7 @@ public class Database {
                 }
             } finally {
                 reader.close();
-            }
+            }*/
         }
 
         public long addWord(String word, String definition) {

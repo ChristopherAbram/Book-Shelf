@@ -1,4 +1,4 @@
-package com.example.r9_bl.bookshelf.activity;
+package com.bookshelf.activity;
 
 import android.app.SearchManager;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import DB.Database;
+import com.bookshelf.database.Database;
 
 /**
  * Created by Maksim on 12/6/2017.

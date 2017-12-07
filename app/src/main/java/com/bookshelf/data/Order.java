@@ -1,9 +1,8 @@
-package data;
+package com.bookshelf.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.lang.annotation.Inherited;
 import java.util.Date;
 
 /**
