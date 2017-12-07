@@ -5,6 +5,230 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.r9_bl.bookshelf.activity.ItemActivity">
+    android:orientation="vertical"
+    tools:context="com.example.r9_bl.bookshelf.activity.ItemActivity"
+    android:paddingTop="@dimen/activity_padding"
+    android:paddingStart="@dimen/activity_padding"
+    android:paddingEnd="@dimen/activity_padding"
+    android:background="@color/colorPrimaryDark"
+    android:backgroundTint="@color/colorPrimaryDark">
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="@dimen/activity_padding"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_gravity="center"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="2dp"
+                card_view:cardBackgroundColor="@color/colorPrimary"
+                card_view:contentPadding="8dp"
+                android:layout_marginBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/name_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Item Name"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/short_desc_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorSemiWhite"
+                        android:text="Short item description." />
+
+                    <TextView
+                        android:id="@+id/price_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00 EUR"
+                        android:textStyle="bold"
+                        android:textSize="28sp"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardBackgroundColor="@color/colorPrimary"
+                card_view:contentPadding="8dp"
+                android:layout_marginBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="About this item"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="6dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="6dp" >
+
+                        <TextView
+                            android:id="@+id/category_title_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Category"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/category_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorSemiWhite"
+                            android:layout_marginBottom="6dp"
+                            android:text="Category1 > Category2 > Category3" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="6dp" >
+
+                        <TextView
+                            android:id="@+id/long_desc_title_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Description"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/long_desc_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorSemiWhite"
+                            android:text="Lorem ipsum dolor sit amet,consectetur adipiscing elit. In vitae turpis vulputate, congue risus non, sollicitudin lectus. Pellentesque et sapien ligula. Integer ac ex hendrerit, tempor metus id, elementum quam." />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardBackgroundColor="@color/colorPrimary"
+                card_view:contentPadding="8dp"
+                android:layout_marginBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="About the merchant"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="6dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_launcher_foreground"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginBottom="6dp">
+
+                            <TextView
+                                android:id="@+id/merchant_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Merchant Name"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:id="@+id/feedback_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="100% positive feedback"
+                                android:textColor="@color/colorSemiWhite" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <Button
+                android:id="@+id/buy_now_button"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:backgroundTint="@color/colorAccent"
+                android:text="Buy now"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:background="@drawable/round_button"/>
+
+            <Button
+                android:id="@+id/add_to_cart_button"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:backgroundTint="@color/colorWhite"
+                android:textColor="@color/colorAccent"
+                android:text="Add to cart"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:background="@drawable/round_button"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

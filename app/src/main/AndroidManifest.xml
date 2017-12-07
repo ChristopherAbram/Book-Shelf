@@ -61,7 +61,8 @@
         </activity>
         <activity
             android:name=".activity.ItemActivity"
-            android:label="Item">
+            android:label="Item"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".activity.ItemsActivity"

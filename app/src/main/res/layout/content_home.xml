@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,35 +8,743 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.r9_bl.bookshelf.activity.HomeActivity"
     android:orientation="vertical"
-    android:padding="8dp"
     tools:showIn="@layout/app_bar_home">
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Categories"
-        android:backgroundTint="@color/colorAccent"
-        android:onClick="toCategories"/>
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:scrollbars="none">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Items"
-        android:backgroundTint="@color/colorAccent"
-        android:onClick="toItems"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Item"
-        android:backgroundTint="@color/colorAccent"
-        android:onClick="toItem"/>
+                <Button
+                    android:layout_width="110dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/round_button"
+                    android:text="Categories"
+                    android:layout_marginEnd="@dimen/card_padding"
+                    android:backgroundTint="@color/colorAccent"
+                    android:onClick="toCategories"/>
 
-</LinearLayout>
+                <Button
+                    android:layout_width="110dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/round_button"
+                    android:text="Hot Items"
+                    android:layout_marginEnd="@dimen/card_padding"
+                    android:backgroundTint="@color/colorAccent"
+                    android:onClick="toItems"/>
+
+                <Button
+                    android:layout_width="110dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/round_button"
+                    android:text="Sales"
+                    android:layout_marginEnd="@dimen/card_padding"
+                    android:backgroundTint="@color/colorAccent"
+                    android:onClick="toItems"/>
+
+                <Button
+                    android:layout_width="110dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/round_button"
+                    android:text="New Entry"
+                    android:layout_marginEnd="@dimen/card_padding"
+                    android:backgroundTint="@color/colorAccent"
+                    android:onClick="toItems"/>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Featured Items"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginStart="@dimen/activity_padding"
+            android:layout_marginBottom="10dp"/>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="240dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    card_view:cardCornerRadius="2dp"
+                    android:layout_marginEnd="@dimen/activity_padding"
+                    android:onClick="toItem">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_launcher_background"
+                        android:scaleType="fitXY"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Item Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Short item description."
+                            android:textColor="@color/colorSemiWhite"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="240dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    card_view:cardCornerRadius="2dp"
+                    android:layout_marginEnd="@dimen/activity_padding"
+                    android:onClick="toItem">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_launcher_background"
+                        android:scaleType="fitXY"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Item Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Short item description."
+                            android:textColor="@color/colorSemiWhite"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="240dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    card_view:cardCornerRadius="2dp"
+                    android:layout_marginEnd="@dimen/activity_padding"
+                    android:onClick="toItem">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_launcher_background"
+                        android:scaleType="fitXY"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Item Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Short item description."
+                            android:textColor="@color/colorSemiWhite"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Discover"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginStart="@dimen/activity_padding"
+            android:layout_marginBottom="10dp"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center"
+                        card_view:cardCornerRadius="2dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        android:onClick="toItem">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center|top">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:src="@drawable/ic_launcher_background"
+                                android:scaleType="fitXY"/>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="0.00 EUR" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center"
+                        card_view:cardCornerRadius="2dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        android:onClick="toItem">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center|top">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:src="@drawable/ic_launcher_background"
+                                android:scaleType="fitXY"/>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="0.00 EUR" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center"
+                        card_view:cardCornerRadius="2dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        android:onClick="toItem">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center|top">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:src="@drawable/ic_launcher_background"
+                                android:scaleType="fitXY"/>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="0.00 EUR" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center"
+                        card_view:cardCornerRadius="2dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        android:onClick="toItem">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center|top">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:src="@drawable/ic_launcher_background"
+                                android:scaleType="fitXY"/>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="0.00 EUR" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center"
+                        card_view:cardCornerRadius="2dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        android:onClick="toItem">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center|top">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:src="@drawable/ic_launcher_background"
+                                android:scaleType="fitXY"/>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="0.00 EUR" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center"
+                        card_view:cardCornerRadius="2dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        android:onClick="toItem">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center|top">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:src="@drawable/ic_launcher_background"
+                                android:scaleType="fitXY"/>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="0.00 EUR" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center"
+                        card_view:cardCornerRadius="2dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        android:onClick="toItem">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center|top">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:src="@drawable/ic_launcher_background"
+                                android:scaleType="fitXY"/>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="0.00 EUR" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center"
+                        card_view:cardCornerRadius="2dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        android:onClick="toItem">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center|top">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:src="@drawable/ic_launcher_background"
+                                android:scaleType="fitXY"/>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="0.00 EUR" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center"
+                        card_view:cardCornerRadius="2dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        android:onClick="toItem">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center|top">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:src="@drawable/ic_launcher_background"
+                                android:scaleType="fitXY"/>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="0.00 EUR" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center"
+                        card_view:cardCornerRadius="2dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        android:onClick="toItem">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center|top">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:src="@drawable/ic_launcher_background"
+                                android:scaleType="fitXY"/>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="0.00 EUR" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center"
+                        card_view:cardCornerRadius="2dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        android:onClick="toItem">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center|top">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:src="@drawable/ic_launcher_background"
+                                android:scaleType="fitXY"/>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="0.00 EUR" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center"
+                        card_view:cardCornerRadius="2dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        android:onClick="toItem">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center|top">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:src="@drawable/ic_launcher_background"
+                                android:scaleType="fitXY"/>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="0.00 EUR" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</ScrollView>

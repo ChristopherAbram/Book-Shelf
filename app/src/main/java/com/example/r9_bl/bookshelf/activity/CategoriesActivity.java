@@ -26,10 +26,10 @@ public class CategoriesActivity extends AppCompatActivity {
         listView = findViewById(R.id.list_view);
 
         //TODO: categoriesList/list should obtain from database.
-        String[] categoriesList = new String[]{"Horror", "Action", "Mystery"};
+        String[] categoriesIDs = new String[]{"001", "002", "003"};
         final ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < categoriesList.length; ++i) {
-            list.add(categoriesList[i]);
+        for (int i = 0; i < categoriesIDs.length; ++i) {
+            list.add(categoriesIDs[i]);
         }
 
         CategoriesAdapter adapter = new CategoriesAdapter(this, list);
@@ -38,14 +38,10 @@ public class CategoriesActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // get list row data (now String as a phone name)
-                String phone = list.get(position);
-                // create an explicit intent
-                Intent intent = new Intent(CategoriesActivity.this, ItemsActivity.class);
-                // add data to intent
-                intent.putExtra("phone",phone);
-                // start a new activity
-                startActivity(intent);
+            String categoryID = list.get(position);
+            Intent intent = new Intent(CategoriesActivity.this, ItemsActivity.class);
+            intent.putExtra("categoryID", categoryID);
+            startActivity(intent);
             }
         });
     }

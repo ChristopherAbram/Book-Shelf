@@ -4,14 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_search"
+        android:id="@+id/search_icon"
         android:orderInCategory="100"
         android:title="Search"
         android:icon="@drawable/ic_search_black_24dp"
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/shopping_cart"
         android:orderInCategory="100"
         android:title="Cart"
         android:icon="@drawable/ic_shopping_cart_black_24dp"

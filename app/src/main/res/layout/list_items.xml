@@ -7,7 +7,7 @@
     android:padding="10dp">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/image_view"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginRight="14dp"
@@ -22,25 +22,25 @@
         android:gravity="center|start">
 
         <TextView
-            android:id="@+id/nameTextView"
+            android:id="@+id/name_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:text="Item Name" />
 
         <TextView
-            android:id="@+id/desTextView"
+            android:id="@+id/short_desc_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:textColor="@color/colorGrayWhite"
-            android:text="Sentences of item description." />
+            android:text="Short item description." />
 
         <TextView
-            android:id="@+id/priceTextView"
+            android:id="@+id/price_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:text="0.00 EUR"  />
 

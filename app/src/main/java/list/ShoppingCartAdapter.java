@@ -12,12 +12,12 @@ import java.util.ArrayList;
 
 public class ShoppingCartAdapter extends ArrayAdapter<String> {
     private Context context;
-    private ArrayList<String> itemId;
+    private ArrayList<String> itemID;
 
-    public ShoppingCartAdapter(Context context, ArrayList<String> itemId) {
-        super(context, R.layout.list_shopping_cart, R.id.textView, itemId);
+    public ShoppingCartAdapter(Context context, ArrayList<String> itemID) {
+        super(context, R.layout.list_shopping_cart, R.id.textView, itemID);
         this.context = context;
-        this.itemId = itemId;
+        this.itemID = itemID;
     }
 
     @Override
@@ -25,7 +25,10 @@ public class ShoppingCartAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.list_shopping_cart, parent, false);
 
-        //TODO: Must be replace with logic using "bookId.get(position)" and obtain detail from database.
+        TextView nameTextView = rowView.findViewById(R.id.name_text_view);
+
+        //TODO: categoryTextView should be Title of the item instead of ID. (obtain from database)
+        nameTextView.setText(itemID.get(position));
 
         return rowView;
     }

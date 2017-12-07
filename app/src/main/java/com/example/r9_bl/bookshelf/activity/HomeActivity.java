@@ -55,7 +55,13 @@ public class HomeActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.search_icon) {
+            Intent intent = new Intent(this, ItemsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.shopping_cart) {
             Intent intent = new Intent(this, ShoppingCartActivity.class);
             startActivity(intent);
             return true;
@@ -87,6 +93,11 @@ public class HomeActivity extends AppCompatActivity
         return true;
     }
 
+    public void toAccount(View view) {
+        Intent intent = new Intent(this, AccountActivity.class);
+        startActivity(intent);
+    }
+
     public void toCategories(View view) {
         Intent intent = new Intent(this, CategoriesActivity.class);
         startActivity(intent);
@@ -94,6 +105,7 @@ public class HomeActivity extends AppCompatActivity
 
     public void toItem(View view) {
         Intent intent = new Intent(this, ItemActivity.class);
+        intent.putExtra("itemID", "55555555");
         startActivity(intent);
     }
 
