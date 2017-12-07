@@ -1,10 +1,8 @@
 package com.bookshelf.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -12,7 +10,7 @@ import com.bookshelf.R;
 
 import java.util.ArrayList;
 
-import list.ShoppingCartAdapter;
+import com.bookshelf.adapter.ShoppingCartAdapter;
 
 public class ShoppingCartActivity extends AppCompatActivity {
 

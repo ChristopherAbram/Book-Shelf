@@ -8,11 +8,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.bookshelf.R;
-import com.example.r9_bl.bookshelf.activity.ItemsActivity;
 
 import java.util.ArrayList;
 
-import list.CategoriesAdapter;
+import com.bookshelf.adapter.CategoriesAdapter;
 
 public class CategoriesActivity extends AppCompatActivity {
 

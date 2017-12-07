@@ -1,18 +1,16 @@
-package com.example.r9_bl.bookshelf.activity;
+package com.bookshelf.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.r9_bl.bookshelf.R;
+import com.bookshelf.R;
+import com.bookshelf.adapter.ItemsAdapter;
 
 import java.util.ArrayList;
-
-import list.ItemsAdapter;
-import list.ShoppingCartAdapter;
 
 public class ItemsActivity extends AppCompatActivity {
 

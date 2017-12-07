@@ -23,7 +23,7 @@ import com.bookshelf.activity.SettingsActivity;
 import com.bookshelf.activity.ShoppingCartActivity;
 import com.bookshelf.api.RoleService;
 import com.bookshelf.data.Role;
-import com.example.r9_bl.bookshelf.activity.ItemsActivity;
+import com.bookshelf.activity.ItemsActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
