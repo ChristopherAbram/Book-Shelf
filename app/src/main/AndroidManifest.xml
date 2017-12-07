@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+
     <application
         android:name=".application.ShopApplication"
         android:allowBackup="true"
@@ -63,6 +64,7 @@
             android:name="com.bookshelf.activity.CategoriesActivity"
             android:label="Categories">
         </activity>
+
         <activity
             android:name=".activity.ItemActivity"
             android:label="Item"
@@ -72,6 +74,16 @@
             android:name=".activity.ItemsActivity"
             android:label="Items">
         </activity>
+
+        <activity android:name=".activity.SearchActivity"
+            android:label="string/searchResults">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+        android:resource="@xml/searchable" />
+    </activity>
     </application>
 
 </manifest>

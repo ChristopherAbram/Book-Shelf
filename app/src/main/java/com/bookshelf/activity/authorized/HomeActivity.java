@@ -1,5 +1,8 @@
 package com.bookshelf.activity.authorized;
 
+import android.app.SearchManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,11 +23,12 @@ import com.bookshelf.activity.BaseActivity;
 import com.bookshelf.activity.CategoriesActivity;
 import com.bookshelf.activity.HistoryActivity;
 import com.bookshelf.activity.ItemActivity;
+import com.bookshelf.activity.ItemsActivity;
 import com.bookshelf.activity.SettingsActivity;
 import com.bookshelf.activity.ShoppingCartActivity;
 import com.bookshelf.api.RoleService;
 import com.bookshelf.data.Role;
-import com.bookshelf.activity.ItemsActivity;
+import com.example.r9_bl.bookshelf.activity.SearchActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,7 +42,6 @@ public class HomeActivity extends BaseActivity
 
     @BindView(R.id.text)
     TextView mRoles;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,8 @@ public class HomeActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
     }
 
     @Override
@@ -81,6 +87,27 @@ public class HomeActivity extends BaseActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home, menu);
+
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.action_search).getActionView();
+        ComponentName componentName = new ComponentName(getApplicationContext(), SearchActivity.class);
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(componentName));
+        searchView.setOnQueryTextListener(
+                new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String s) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String s) {
+                        return false;
+                    }
+                }
+        );
         return true;
     }
 
@@ -88,7 +115,7 @@ public class HomeActivity extends BaseActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.search_icon) {
+        if (id == R.id.action_search) {
             Intent intent = new Intent(this, ItemsActivity.class);
             startActivity(intent);
             return true;
