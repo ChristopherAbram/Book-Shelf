@@ -9,17 +9,21 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bookshelf.R;
 import com.bookshelf.activity.AccountActivity;
 import com.bookshelf.activity.BaseActivity;
+import com.bookshelf.activity.CategoriesActivity;
 import com.bookshelf.activity.HistoryActivity;
+import com.bookshelf.activity.ItemActivity;
 import com.bookshelf.activity.SettingsActivity;
 import com.bookshelf.activity.ShoppingCartActivity;
 import com.bookshelf.api.RoleService;
 import com.bookshelf.data.Role;
+import com.example.r9_bl.bookshelf.activity.ItemsActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,7 +88,13 @@ public class HomeActivity extends BaseActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.search_icon) {
+            Intent intent = new Intent(this, ItemsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.shopping_cart) {
             Intent intent = new Intent(this, ShoppingCartActivity.class);
             startActivity(intent);
             return true;
@@ -134,5 +144,25 @@ public class HomeActivity extends BaseActivity
 
             Toast.makeText(HomeActivity.this, "Something went wrong...", Toast.LENGTH_LONG).show();
         }
+    }
+    public void toAccount(View view) {
+        Intent intent = new Intent(this, AccountActivity.class);
+        startActivity(intent);
+    }
+
+    public void toCategories(View view) {
+        Intent intent = new Intent(this, CategoriesActivity.class);
+        startActivity(intent);
+    }
+
+    public void toItem(View view) {
+        Intent intent = new Intent(this, ItemActivity.class);
+        intent.putExtra("itemID", "55555555");
+        startActivity(intent);
+    }
+
+    public void toItems(View view) {
+        Intent intent = new Intent(this, ItemsActivity.class);
+        startActivity(intent);
     }
 }

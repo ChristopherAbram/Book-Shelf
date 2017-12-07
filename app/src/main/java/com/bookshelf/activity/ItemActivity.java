@@ -2,6 +2,7 @@ package com.bookshelf.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.bookshelf.R;
 
@@ -11,5 +12,11 @@ public class ItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
+
+        Bundle extras = getIntent().getExtras();
+        String value = extras.getString("itemID");
+
+        TextView nameTextView = findViewById(R.id.name_text_view);
+        nameTextView.setText(value);
     }
 }

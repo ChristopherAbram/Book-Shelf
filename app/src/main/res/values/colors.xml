@@ -5,6 +5,8 @@
     <color name="colorPrimaryDark">#121212</color>
     <color name="colorAccent">#385dba</color>
     <!--Extras-->
+    <color name="colorWhite">#FFFFFF</color>
     <color name="colorAlmostWhite">#EFEFEF</color>
     <color name="colorSemiWhite">#CDCDCD</color>
+    <color name="colorGrayWhite">#9F9F9F</color>
 </resources>

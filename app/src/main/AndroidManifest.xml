@@ -62,12 +62,16 @@
         <activity
             android:name="com.bookshelf.activity.CategoriesActivity"
             android:label="Categories">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.bookshelf.activity.authorized.HomeActivity" />
         </activity>
-        <activity android:name="com.bookshelf.activity.ItemActivity" />
-
+        <activity
+            android:name=".activity.ItemActivity"
+            android:label="Item"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activity.ItemsActivity"
+            android:label="Items">
+        </activity>
     </application>
 
 </manifest>
