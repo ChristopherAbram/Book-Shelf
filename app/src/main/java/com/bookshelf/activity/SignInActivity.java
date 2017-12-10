@@ -61,14 +61,6 @@ public class SignInActivity extends BaseActivity {
         });
     }
 
-    private void showProgressBar(){
-        // TODO: Show loading...
-    }
-
-    private void hideProgressBar(){
-        // TODO: Hide loading...
-    }
-
     private User getUserDataFromView(){
         User user = new User();
         user.setEmail(mEmail.getText().toString());

@@ -92,6 +92,14 @@ abstract public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    protected void showProgressBar(){
+        // TODO: Show loading...
+    }
+
+    protected void hideProgressBar(){
+        // TODO: Hide loading...
+    }
+
     public ShopApplication getShopApplication(){
         return (ShopApplication) getApplication();
     }
