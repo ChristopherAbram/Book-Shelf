@@ -5,8 +5,6 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 import lombok.Data;
 
 /**
@@ -16,7 +14,7 @@ import lombok.Data;
 public class Cart implements Parcelable {
 
     private Integer id;
-    private Date cdate;
+    private String cdate;
     private Integer amount;
     @SerializedName("user_id")
     private Integer userId;
@@ -31,7 +29,7 @@ public class Cart implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(this.id);
-        dest.writeLong(this.cdate != null ? this.cdate.getTime() : -1);
+        dest.writeString(this.cdate);
         dest.writeValue(this.amount);
         dest.writeValue(this.userId);
         dest.writeValue(this.itemId);
@@ -39,8 +37,7 @@ public class Cart implements Parcelable {
 
     protected Cart(Parcel in) {
         this.id = (Integer) in.readValue(Integer.class.getClassLoader());
-        long tmpCdate = in.readLong();
-        this.cdate = tmpCdate == -1 ? null : new Date(tmpCdate);
+        this.cdate = in.readString();
         this.amount = (Integer) in.readValue(Integer.class.getClassLoader());
         this.userId = (Integer) in.readValue(Integer.class.getClassLoader());
         this.itemId = (Integer) in.readValue(Integer.class.getClassLoader());

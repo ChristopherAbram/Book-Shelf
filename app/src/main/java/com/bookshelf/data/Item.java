@@ -5,8 +5,6 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 import lombok.Data;
 
 /**
@@ -21,15 +19,14 @@ public class Item implements Parcelable {
     private String description;
     private String parameters;
     private String picture;
-    private Date cdate;
-    private Date edate;
+    private String cdate;
+    private String edate;
     private Float price;
     private Integer amount;
     @SerializedName("user_id")
     private Integer userId;
     @SerializedName("category_id")
     private Integer categoryId;
-
 
     @Override
     public int describeContents() {
@@ -44,8 +41,8 @@ public class Item implements Parcelable {
         dest.writeString(this.description);
         dest.writeString(this.parameters);
         dest.writeString(this.picture);
-        dest.writeLong(this.cdate != null ? this.cdate.getTime() : -1);
-        dest.writeLong(this.edate != null ? this.edate.getTime() : -1);
+        dest.writeString(this.cdate);
+        dest.writeString(this.edate);
         dest.writeValue(this.price);
         dest.writeValue(this.amount);
         dest.writeValue(this.userId);
@@ -59,10 +56,8 @@ public class Item implements Parcelable {
         this.description = in.readString();
         this.parameters = in.readString();
         this.picture = in.readString();
-        long tmpCdate = in.readLong();
-        this.cdate = tmpCdate == -1 ? null : new Date(tmpCdate);
-        long tmpEdate = in.readLong();
-        this.edate = tmpEdate == -1 ? null : new Date(tmpEdate);
+        this.cdate = in.readString();
+        this.edate = in.readString();
         this.price = (Float) in.readValue(Float.class.getClassLoader());
         this.amount = (Integer) in.readValue(Integer.class.getClassLoader());
         this.userId = (Integer) in.readValue(Integer.class.getClassLoader());

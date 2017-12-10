@@ -10,10 +10,9 @@ import android.widget.Toast;
 import com.bookshelf.R;
 import com.bookshelf.adapter.ItemsAdapter;
 import com.bookshelf.api.ItemService;
-import com.bookshelf.data.Item;
+import com.bookshelf.data.collection.Items;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -55,13 +54,13 @@ public class ItemsActivity extends BaseActivity {
         super.onStart();
 
         ItemService service = generateCallService(ItemService.class);
-        Call<List<Item>> call = service.getItems("1, 50");
+        Call<Items> call = service.getItems("1,50");
         call.enqueue(new ItemCallback());
     }
 
-    private class ItemCallback extends Callback<List<Item>> {
+    private class ItemCallback extends Callback<Items> {
         @Override
-        public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
+        public void onResponse(Call<Items> call, Response<Items> response) {
             super.onResponse(call, response);
 
             if(response.isSuccessful()){
@@ -72,7 +71,7 @@ public class ItemsActivity extends BaseActivity {
         }
 
         @Override
-        public void onFailure(Call<List<Item>> call, Throwable t) {
+        public void onFailure(Call<Items> call, Throwable t) {
             super.onFailure(call, t);
 
             Toast.makeText(ItemsActivity.this, "Ooopsss...", Toast.LENGTH_LONG).show();

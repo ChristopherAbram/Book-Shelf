@@ -5,8 +5,6 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 import lombok.Data;
 
 /**
@@ -20,8 +18,8 @@ public class Category implements Parcelable {
     private String name;
     private String description;
     private String picture;
-    private Date cdate;
-    private Date edate;
+    private String cdate;
+    private String edate;
     @SerializedName("user_id")
     private Integer userId;
     @SerializedName("category_id")
@@ -39,8 +37,8 @@ public class Category implements Parcelable {
         dest.writeString(this.name);
         dest.writeString(this.description);
         dest.writeString(this.picture);
-        dest.writeLong(this.cdate != null ? this.cdate.getTime() : -1);
-        dest.writeLong(this.edate != null ? this.edate.getTime() : -1);
+        dest.writeString(this.cdate);
+        dest.writeString(this.edate);
         dest.writeValue(this.userId);
         dest.writeValue(this.categoryId);
     }
@@ -51,10 +49,8 @@ public class Category implements Parcelable {
         this.name = in.readString();
         this.description = in.readString();
         this.picture = in.readString();
-        long tmpCdate = in.readLong();
-        this.cdate = tmpCdate == -1 ? null : new Date(tmpCdate);
-        long tmpEdate = in.readLong();
-        this.edate = tmpEdate == -1 ? null : new Date(tmpEdate);
+        this.cdate = in.readString();
+        this.edate = in.readString();
         this.userId = (Integer) in.readValue(Integer.class.getClassLoader());
         this.categoryId = (Integer) in.readValue(Integer.class.getClassLoader());
     }

@@ -3,7 +3,7 @@ package com.bookshelf.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
+import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
 
@@ -52,14 +52,15 @@ public class User implements Parcelable {
     private String firstname;
     private String lastname;
     private String phone;
+    @SerializedName("role_id")
     private Integer roleId;
     private Integer firstaccess;
     private Integer lastaccess;
     private Integer lastlogin;
     private Integer avatar;
     private Character sex;
-    private Date cdate;
-    private Date bdate;
+    private String cdate;
+    private String bdate;
     private String description;
     private String citation;
     private Integer isactive;
@@ -86,8 +87,8 @@ public class User implements Parcelable {
         dest.writeValue(this.lastlogin);
         dest.writeValue(this.avatar);
         dest.writeSerializable(this.sex);
-        dest.writeLong(this.cdate != null ? this.cdate.getTime() : -1);
-        dest.writeLong(this.bdate != null ? this.bdate.getTime() : -1);
+        dest.writeString(this.cdate);
+        dest.writeString(this.bdate);
         dest.writeString(this.description);
         dest.writeString(this.citation);
         dest.writeValue(this.isactive);
@@ -109,10 +110,8 @@ public class User implements Parcelable {
         this.lastlogin = (Integer) in.readValue(Integer.class.getClassLoader());
         this.avatar = (Integer) in.readValue(Integer.class.getClassLoader());
         this.sex = (Character) in.readSerializable();
-        long tmpCdate = in.readLong();
-        this.cdate = tmpCdate == -1 ? null : new Date(tmpCdate);
-        long tmpBdate = in.readLong();
-        this.bdate = tmpBdate == -1 ? null : new Date(tmpBdate);
+        this.cdate = in.readString();
+        this.bdate = in.readString();
         this.description = in.readString();
         this.citation = in.readString();
         this.isactive = (Integer) in.readValue(Integer.class.getClassLoader());
