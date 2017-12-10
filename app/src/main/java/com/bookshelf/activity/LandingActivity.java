@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 
 import com.bookshelf.R;
 import com.bookshelf.activity.authorized.HomeActivity;
+import com.bookshelf.application.ShopApplication;
 import com.bookshelf.service.AuthenticationService;
 
 public class LandingActivity extends Activity {
@@ -23,8 +24,7 @@ public class LandingActivity extends Activity {
 
         progressBar = findViewById(R.id.loading_bar);
 
-        //Should be replace with cache login on device
-        loggedOn = false;
+        loggedOn = ((ShopApplication) getApplication()).isAuthorized();
 
         Intent intent = new Intent(this, AuthenticationService.class);
         startService(intent);

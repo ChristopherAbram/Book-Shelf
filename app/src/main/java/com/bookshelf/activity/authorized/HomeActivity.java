@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import com.bookshelf.R;
 import com.bookshelf.activity.AccountActivity;
-import com.bookshelf.activity.BaseActivity;
 import com.bookshelf.activity.CategoriesActivity;
 import com.bookshelf.activity.HistoryActivity;
 import com.bookshelf.activity.ItemActivity;
@@ -35,7 +34,7 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class HomeActivity extends BaseActivity
+public class HomeActivity extends AuthorizedActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private final String TAG = getClass().getName();
@@ -145,7 +144,8 @@ public class HomeActivity extends BaseActivity
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_log_out) {
-
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
