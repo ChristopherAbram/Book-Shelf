@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.LandingActivity">
+        <activity android:name=".activity.SignUpAddressActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,13 +27,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.FrontActivity" />
         <activity
-            android:name="com.bookshelf.activity.SignInActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:noHistory="true"/>
-
-        <activity android:name="com.bookshelf.activity.SignUpActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:name=".activity.SignInActivity"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.ShoppingCartActivity"
             android:label="Shopping Cart">
@@ -64,14 +63,14 @@
         </activity>
         <activity
             android:name=".activity.CategoriesActivity"
-            android:label="Categories"></activity>
+            android:label="Categories" />
         <activity
             android:name=".activity.ItemActivity"
             android:label="Item"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.ItemsActivity"
-            android:label="Items"></activity>
+            android:label="Items" />
         <activity
             android:name=".activity.SearchActivity"
             android:label="string/searchResults">
@@ -83,7 +82,7 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".activity.authorized.SignOutActivity"></activity>
+        <activity android:name=".activity.authorized.SignOutActivity" />
     </application>
 
 </manifest>
