@@ -13,20 +13,20 @@ import lombok.Data;
  * Created by Maksim on 12/5/2017.
  */
 @Data
-public class Order implements Parcelable{
+public class Order implements Parcelable {
 
-    private int id;
+    private Integer id;
     private Date cdate;
     private String name;
     private String picture;
-    private float price;
-    private int amount;
+    private Float price;
+    private Integer amount;
     @SerializedName("user_id")
-    private int userId;
+    private Integer userId;
     @SerializedName("category_id")
-    private int categoryId;
+    private Integer categoryId;
     @SerializedName("address_id")
-    private int addressId;
+    private Integer addressId;
 
     @Override
     public int describeContents() {
@@ -35,34 +35,31 @@ public class Order implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
+        dest.writeValue(this.id);
         dest.writeLong(this.cdate != null ? this.cdate.getTime() : -1);
         dest.writeString(this.name);
         dest.writeString(this.picture);
-        dest.writeFloat(this.price);
-        dest.writeInt(this.amount);
-        dest.writeInt(this.userId);
-        dest.writeInt(this.categoryId);
-        dest.writeInt(this.addressId);
-    }
-
-    public Order() {
+        dest.writeValue(this.price);
+        dest.writeValue(this.amount);
+        dest.writeValue(this.userId);
+        dest.writeValue(this.categoryId);
+        dest.writeValue(this.addressId);
     }
 
     protected Order(Parcel in) {
-        this.id = in.readInt();
+        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
         long tmpCdate = in.readLong();
         this.cdate = tmpCdate == -1 ? null : new Date(tmpCdate);
         this.name = in.readString();
         this.picture = in.readString();
-        this.price = in.readFloat();
-        this.amount = in.readInt();
-        this.userId = in.readInt();
-        this.categoryId = in.readInt();
-        this.addressId = in.readInt();
+        this.price = (Float) in.readValue(Float.class.getClassLoader());
+        this.amount = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.userId = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.categoryId = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.addressId = (Integer) in.readValue(Integer.class.getClassLoader());
     }
 
-    public static final Creator<Order> CREATOR = new Creator<Order>() {
+    public static final Parcelable.Creator<Order> CREATOR = new Parcelable.Creator<Order>() {
         @Override
         public Order createFromParcel(Parcel source) {
             return new Order(source);

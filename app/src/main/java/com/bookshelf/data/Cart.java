@@ -13,15 +13,15 @@ import lombok.Data;
  * Created by Maksim on 12/5/2017.
  */
 @Data
-public class Cart implements Parcelable{
+public class Cart implements Parcelable {
 
-    private int id;
+    private Integer id;
     private Date cdate;
-    private int amount;
+    private Integer amount;
     @SerializedName("user_id")
-    private int userId;
+    private Integer userId;
     @SerializedName("item_id")
-    private int itemId;
+    private Integer itemId;
 
     @Override
     public int describeContents() {
@@ -30,23 +30,23 @@ public class Cart implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
+        dest.writeValue(this.id);
         dest.writeLong(this.cdate != null ? this.cdate.getTime() : -1);
-        dest.writeInt(this.amount);
-        dest.writeInt(this.userId);
-        dest.writeInt(this.itemId);
+        dest.writeValue(this.amount);
+        dest.writeValue(this.userId);
+        dest.writeValue(this.itemId);
     }
 
     protected Cart(Parcel in) {
-        this.id = in.readInt();
+        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
         long tmpCdate = in.readLong();
         this.cdate = tmpCdate == -1 ? null : new Date(tmpCdate);
-        this.amount = in.readInt();
-        this.userId = in.readInt();
-        this.itemId = in.readInt();
+        this.amount = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.userId = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.itemId = (Integer) in.readValue(Integer.class.getClassLoader());
     }
 
-    public static final Creator<Cart> CREATOR = new Creator<Cart>() {
+    public static final Parcelable.Creator<Cart> CREATOR = new Parcelable.Creator<Cart>() {
         @Override
         public Cart createFromParcel(Parcel source) {
             return new Cart(source);

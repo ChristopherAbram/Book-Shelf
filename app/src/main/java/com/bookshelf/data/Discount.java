@@ -13,18 +13,18 @@ import lombok.Data;
  * Created by Maksim on 12/5/2017.
  */
 @Data
-public class Discount implements Parcelable{
+public class Discount implements Parcelable {
 
-    private int id;
+    private Integer id;
     private Date cdate;
     private String name;
-    private int amount;
+    private Integer amount;
     @SerializedName("user_id")
-    private int userId;
+    private Integer userId;
     @SerializedName("category_id")
-    private int categoryId;
+    private Integer categoryId;
     @SerializedName("item_id")
-    private int itemId;
+    private Integer itemId;
 
     @Override
     public int describeContents() {
@@ -33,30 +33,27 @@ public class Discount implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
+        dest.writeValue(this.id);
         dest.writeLong(this.cdate != null ? this.cdate.getTime() : -1);
         dest.writeString(this.name);
-        dest.writeInt(this.amount);
-        dest.writeInt(this.userId);
-        dest.writeInt(this.categoryId);
-        dest.writeInt(this.itemId);
-    }
-
-    public Discount() {
+        dest.writeValue(this.amount);
+        dest.writeValue(this.userId);
+        dest.writeValue(this.categoryId);
+        dest.writeValue(this.itemId);
     }
 
     protected Discount(Parcel in) {
-        this.id = in.readInt();
+        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
         long tmpCdate = in.readLong();
         this.cdate = tmpCdate == -1 ? null : new Date(tmpCdate);
         this.name = in.readString();
-        this.amount = in.readInt();
-        this.userId = in.readInt();
-        this.categoryId = in.readInt();
-        this.itemId = in.readInt();
+        this.amount = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.userId = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.categoryId = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.itemId = (Integer) in.readValue(Integer.class.getClassLoader());
     }
 
-    public static final Creator<Discount> CREATOR = new Creator<Discount>() {
+    public static final Parcelable.Creator<Discount> CREATOR = new Parcelable.Creator<Discount>() {
         @Override
         public Discount createFromParcel(Parcel source) {
             return new Discount(source);

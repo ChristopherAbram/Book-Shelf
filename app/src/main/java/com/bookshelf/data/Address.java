@@ -11,18 +11,19 @@ import lombok.Data;
  * Created by Maksim on 12/5/2017.
  */
 @Data
-public class Address implements Parcelable{
+public class Address implements Parcelable {
 
-    private int id;
+    private Integer id;
     @SerializedName("country_id")
-    private int countryId;
+    private Integer countryId;
     @SerializedName("user_id")
-    private int userId;
+    private Integer userId;
     private String city;
     private String zip;
     private String street;
     private String house;
     private String flat;
+
 
     @Override
     public int describeContents() {
@@ -31,9 +32,9 @@ public class Address implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
-        dest.writeInt(this.countryId);
-        dest.writeInt(this.userId);
+        dest.writeValue(this.id);
+        dest.writeValue(this.countryId);
+        dest.writeValue(this.userId);
         dest.writeString(this.city);
         dest.writeString(this.zip);
         dest.writeString(this.street);
@@ -41,13 +42,10 @@ public class Address implements Parcelable{
         dest.writeString(this.flat);
     }
 
-    public Address() {
-    }
-
     protected Address(Parcel in) {
-        this.id = in.readInt();
-        this.countryId = in.readInt();
-        this.userId = in.readInt();
+        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.countryId = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.userId = (Integer) in.readValue(Integer.class.getClassLoader());
         this.city = in.readString();
         this.zip = in.readString();
         this.street = in.readString();
@@ -55,7 +53,7 @@ public class Address implements Parcelable{
         this.flat = in.readString();
     }
 
-    public static final Creator<Address> CREATOR = new Creator<Address>() {
+    public static final Parcelable.Creator<Address> CREATOR = new Parcelable.Creator<Address>() {
         @Override
         public Address createFromParcel(Parcel source) {
             return new Address(source);
