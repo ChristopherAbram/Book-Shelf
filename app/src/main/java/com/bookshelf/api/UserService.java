@@ -1,7 +1,9 @@
 package com.bookshelf.api;
 
 import com.bookshelf.data.Item;
+import com.bookshelf.data.User;
 import com.bookshelf.data.collection.Categories;
+import com.bookshelf.data.collection.Users;
 
 import java.util.List;
 import retrofit2.Call;
@@ -9,9 +11,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface CategoryService {
+public interface UserService {
 
-    @GET("/api/categories?transform=1&filter=id,gt,1&?order=name,desc")
-    Call<Categories> getCategories();
+    @GET("/api/users/{id}")
+    Call<User> getUserByID(@Path("id") Integer id);
 
 }

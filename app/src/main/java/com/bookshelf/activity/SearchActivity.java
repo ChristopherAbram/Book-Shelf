@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.bookshelf.database.Database;
 
@@ -14,31 +15,26 @@ import com.bookshelf.database.Database;
 
 public class SearchActivity extends AppCompatActivity {
 
-    Database db = new Database(this);
+    String query;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        handleIntent(getIntent());
+        query = getIntent().getStringExtra(SearchManager.QUERY);
+        Intent intent = new Intent(this, ItemsActivity.class);
+        intent.putExtra("searchKeyword", query);
+        startActivity(intent);
+        finish();
     }
 
     @Override
     protected void onNewIntent(Intent intent){
         super.onNewIntent(intent);
-        handleIntent(intent);
+        query = intent.getStringExtra(SearchManager.QUERY);
+        Intent newIntent = new Intent(this, ItemsActivity.class);
+        newIntent.putExtra("searchKeyword", query);
+        startActivity(newIntent);
+        finish();
     }
-
-    private void handleIntent(Intent intent){
-        if(Intent.ACTION_SEARCH.equals(intent.getAction())){
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            Cursor c = db.getWordMatches(query, null);
-            //showResults(query);
-        }
-    }
-
-    private void showResults(String query){
-
-    }
-
 
 }

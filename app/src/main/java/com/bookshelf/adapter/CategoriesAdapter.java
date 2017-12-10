@@ -7,17 +7,19 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.bookshelf.R;
+import com.bookshelf.data.Category;
 
 import java.util.ArrayList;
 
-public class CategoriesAdapter extends ArrayAdapter<String> {
-    private Context context;
-    private ArrayList<String> categoryID;
+public class CategoriesAdapter extends ArrayAdapter<Category> {
 
-    public CategoriesAdapter(Context context, ArrayList<String> categoryID) {
-        super(context, R.layout.list_categories, R.id.textView, categoryID);
+    private Context context;
+    private ArrayList<Category> categories = null;
+
+    public CategoriesAdapter(Context context, ArrayList<Category> categories) {
+        super(context, R.layout.list_categories, categories);
         this.context = context;
-        this.categoryID = categoryID;
+        this.categories = categories;
     }
 
     @Override
@@ -25,10 +27,11 @@ public class CategoriesAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.list_categories, parent, false);
 
-        TextView categoryTextView = rowView.findViewById(R.id.category_text_view);
+        Category category = categories.get(position);
 
-        //TODO: categoryTextView should be Title of the category instead of ID.
-        categoryTextView.setText(categoryID.get(position));
+        TextView categoryTextView = rowView.findViewById(R.id.category_text_view);
+        categoryTextView.setText(category.getName());
+
         return rowView;
     }
 

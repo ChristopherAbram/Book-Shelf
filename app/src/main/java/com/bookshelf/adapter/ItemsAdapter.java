@@ -8,17 +8,19 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.bookshelf.R;
+import com.bookshelf.data.Category;
+import com.bookshelf.data.Item;
 
 import java.util.ArrayList;
 
-public class ItemsAdapter extends ArrayAdapter<String> {
+public class ItemsAdapter extends ArrayAdapter<Item> {
     private Context context;
-    private ArrayList<String> itemID;
+    private ArrayList<Item> items;
 
-    public ItemsAdapter(Context context, ArrayList<String> itemID) {
-        super(context, R.layout.list_items, R.id.textView, itemID);
+    public ItemsAdapter(Context context, ArrayList<Item> items) {
+        super(context, R.layout.list_items, items);
         this.context = context;
-        this.itemID = itemID;
+        this.items = items;
     }
 
     @Override
@@ -26,10 +28,13 @@ public class ItemsAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.list_items, parent, false);
 
-        TextView nameTextView = rowView.findViewById(R.id.name_text_view);
+        Item item = items.get(position);
 
-        //TODO: categoryTextView should be Title of the item instead of ID. (obtain from database)
-        nameTextView.setText(itemID.get(position));
+        TextView nameTextView = rowView.findViewById(R.id.name_text_view);
+        nameTextView.setText(item.getName());
+
+        TextView priceTextView = rowView.findViewById(R.id.price_text_view);
+        priceTextView.setText(item.getPrice()+" EUR");
 
         return rowView;
     }

@@ -18,68 +18,8 @@
         <TextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <Button
-                    android:layout_width="110dp"
-                    android:layout_height="38dp"
-                    android:background="@drawable/round_button"
-                    android:text="Categories"
-                    android:layout_marginEnd="@dimen/card_padding"
-                    android:backgroundTint="@color/colorAccent"
-                    android:onClick="toCategories"/>
-
-                <Button
-                    android:layout_width="110dp"
-                    android:layout_height="38dp"
-                    android:background="@drawable/round_button"
-                    android:text="Hot Items"
-                    android:layout_marginEnd="@dimen/card_padding"
-                    android:backgroundTint="@color/colorAccent"
-                    android:onClick="toItems"/>
-
-                <Button
-                    android:layout_width="110dp"
-                    android:layout_height="38dp"
-                    android:background="@drawable/round_button"
-                    android:text="Sales"
-                    android:layout_marginEnd="@dimen/card_padding"
-                    android:backgroundTint="@color/colorAccent"
-                    android:onClick="toItems"/>
-
-                <Button
-                    android:layout_width="110dp"
-                    android:layout_height="38dp"
-                    android:background="@drawable/round_button"
-                    android:text="New Entry"
-                    android:layout_marginEnd="@dimen/card_padding"
-                    android:backgroundTint="@color/colorAccent"
-                    android:onClick="toItems"/>
-
-            </LinearLayout>
-
-        </HorizontalScrollView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Featured Items"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_marginStart="@dimen/activity_padding"
-            android:layout_marginBottom="10dp"/>
+            android:textColor="@color/colorSemiWhite"/>
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -99,7 +39,7 @@
                     android:layout_gravity="center"
                     card_view:cardCornerRadius="2dp"
                     android:layout_marginEnd="@dimen/activity_padding"
-                    android:onClick="toItem">
+                    android:onClick="toCategories">
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -116,14 +56,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Item Name"
+                            android:text="Categories"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Short item description."
+                            android:text="Discover items by genres"
                             android:textColor="@color/colorSemiWhite"/>
 
                     </LinearLayout>
@@ -219,536 +159,61 @@
             android:layout_marginStart="@dimen/activity_padding"
             android:layout_marginBottom="10dp"/>
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="none"
-            android:layout_marginBottom="20dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="3"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp">
+                <android.support.v7.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="0dp"
+                    android:layout_height="110dp"
+                    android:layout_gravity="center"
+                    card_view:cardCornerRadius="2dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="3dp"
+                    card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                    android:onClick="toItem">
 
-                    <android.support.v7.widget.CardView
-                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="110dp"
-                        android:layout_gravity="center"
-                        card_view:cardCornerRadius="2dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
-                        android:onClick="toItem">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center|top">
 
-                        <LinearLayout
+                        <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center|top">
+                            android:layout_height="80dp"
+                            android:src="@drawable/ic_launcher_background"
+                            android:scaleType="fitXY"/>
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:src="@drawable/ic_launcher_background"
-                                android:scaleType="fitXY"/>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="0.00 EUR" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="110dp"
-                        android:layout_gravity="center"
-                        card_view:cardCornerRadius="2dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
-                        android:onClick="toItem">
-
-                        <LinearLayout
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center|top">
+                            android:layout_height="match_parent">
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:src="@drawable/ic_launcher_background"
-                                android:scaleType="fitXY"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="0.00 EUR" />
 
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                        </RelativeLayout>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="0.00 EUR" />
+                    </LinearLayout>
 
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="110dp"
-                        android:layout_gravity="center"
-                        card_view:cardCornerRadius="2dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
-                        android:onClick="toItem">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center|top">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:src="@drawable/ic_launcher_background"
-                                android:scaleType="fitXY"/>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="0.00 EUR" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="3"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp">
-
-                    <android.support.v7.widget.CardView
-                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="110dp"
-                        android:layout_gravity="center"
-                        card_view:cardCornerRadius="2dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
-                        android:onClick="toItem">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center|top">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:src="@drawable/ic_launcher_background"
-                                android:scaleType="fitXY"/>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="0.00 EUR" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="110dp"
-                        android:layout_gravity="center"
-                        card_view:cardCornerRadius="2dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
-                        android:onClick="toItem">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center|top">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:src="@drawable/ic_launcher_background"
-                                android:scaleType="fitXY"/>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="0.00 EUR" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="110dp"
-                        android:layout_gravity="center"
-                        card_view:cardCornerRadius="2dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
-                        android:onClick="toItem">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center|top">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:src="@drawable/ic_launcher_background"
-                                android:scaleType="fitXY"/>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="0.00 EUR" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="3"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp">
-
-                    <android.support.v7.widget.CardView
-                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="110dp"
-                        android:layout_gravity="center"
-                        card_view:cardCornerRadius="2dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
-                        android:onClick="toItem">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center|top">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:src="@drawable/ic_launcher_background"
-                                android:scaleType="fitXY"/>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="0.00 EUR" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="110dp"
-                        android:layout_gravity="center"
-                        card_view:cardCornerRadius="2dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
-                        android:onClick="toItem">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center|top">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:src="@drawable/ic_launcher_background"
-                                android:scaleType="fitXY"/>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="0.00 EUR" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="110dp"
-                        android:layout_gravity="center"
-                        card_view:cardCornerRadius="2dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
-                        android:onClick="toItem">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center|top">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:src="@drawable/ic_launcher_background"
-                                android:scaleType="fitXY"/>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="0.00 EUR" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="3"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp">
-
-                    <android.support.v7.widget.CardView
-                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="110dp"
-                        android:layout_gravity="center"
-                        card_view:cardCornerRadius="2dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
-                        android:onClick="toItem">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center|top">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:src="@drawable/ic_launcher_background"
-                                android:scaleType="fitXY"/>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="0.00 EUR" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="110dp"
-                        android:layout_gravity="center"
-                        card_view:cardCornerRadius="2dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
-                        android:onClick="toItem">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center|top">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:src="@drawable/ic_launcher_background"
-                                android:scaleType="fitXY"/>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="0.00 EUR" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="110dp"
-                        android:layout_gravity="center"
-                        card_view:cardCornerRadius="2dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="3dp"
-                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
-                        android:onClick="toItem">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center|top">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:src="@drawable/ic_launcher_background"
-                                android:scaleType="fitXY"/>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="0.00 EUR" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                </LinearLayout>
+                </android.support.v7.widget.CardView>
 
             </LinearLayout>
 
-        </ScrollView>
+        </LinearLayout>
 
     </LinearLayout>
 
