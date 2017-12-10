@@ -12,7 +12,6 @@ import com.bookshelf.R;
 import com.bookshelf.activity.authorized.HomeActivity;
 import com.bookshelf.api.Authentication;
 import com.bookshelf.application.Constants;
-import com.bookshelf.application.ShopApplication;
 import com.bookshelf.data.CsrfToken;
 import com.bookshelf.data.User;
 
@@ -49,14 +48,15 @@ public class SignInActivity extends BaseActivity {
         mSignIn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                // TODO: Block login button.
+                // Blocking login button:
+                mSignIn.setEnabled(false);
                 // Get user data:
                 User user = getUserDataFromView();
 
                 Authentication auth = generateCallService(Authentication.class);
                 Call<CsrfToken> call = auth.perform(user.getEmail(), user.getPassword());
+                showProgressBar();
                 call.enqueue(new AuthenticationCallback());
-                // TODO: Show loading...
             }
         });
     }
@@ -85,15 +85,19 @@ public class SignInActivity extends BaseActivity {
         public void onResponse(Call<CsrfToken> call, Response<CsrfToken> response) {
             super.onResponse(call, response); // do not forget to call it!
 
-            // TODO: hide loading...
             if(response.isSuccessful()){
                 CsrfToken csrf = response.body();
-                ((ShopApplication) getApplication()).setCsrfToken(csrf);
+
+                getShopApplication().setCsrfToken(csrf);
+                getShopApplication().setAuthorized(true);
 
                 Log.d(TAG, csrf.getToken());
                 toHome();
             }
             else {
+                hideProgressBar();
+                // Enable login button:
+                mSignIn.setEnabled(true);
                 // TODO: Inform user that has specified wrong credentials:
                 Toast.makeText(SignInActivity.this, "User does not exist, wrong email or password", Toast.LENGTH_LONG).show();
             }
@@ -101,7 +105,9 @@ public class SignInActivity extends BaseActivity {
 
         @Override
         public void onFailure(Call<CsrfToken> call, Throwable t) {
-            // TODO: hide loading...
+            hideProgressBar();
+            // Enable login button:
+            mSignIn.setEnabled(true);
             // TODO: Inform user that cannot authenticate:
             Toast.makeText(SignInActivity.this, "Authentication failed, try again later", Toast.LENGTH_LONG).show();
         }

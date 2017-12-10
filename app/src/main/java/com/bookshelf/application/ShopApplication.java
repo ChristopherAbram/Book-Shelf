@@ -15,6 +15,8 @@ public class ShopApplication extends Application {
     private CsrfToken csrfToken;
     private String cookies = "";
 
+    private boolean mAuthorized;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -26,6 +28,14 @@ public class ShopApplication extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean isAuthorized() {
+        return mAuthorized;
+    }
+
+    public void setAuthorized(boolean authorized) {
+        this.mAuthorized = authorized;
     }
 
     public CsrfToken getCsrfToken() {

@@ -5,5 +5,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="remove_shopping_cart_item"><u>Remove</u></string>
+    <string name="new_to_bookshelf">New to BookShelf?</string>
 
 </resources>

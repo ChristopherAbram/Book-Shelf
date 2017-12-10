@@ -36,9 +36,9 @@ abstract public class BaseActivity extends AppCompatActivity {
         setBaseUrl(Constants.API_SERVER_URL);
 
         // Get Csrf token, could be null:
-        csrfToken = ((ShopApplication) getApplication()).getCsrfToken();
+        csrfToken = getShopApplication().getCsrfToken();
         // Get session id:
-        cookies = ((ShopApplication) getApplication()).getCookies();
+        cookies = getShopApplication().getCookies();
 
         buildRetrofitInstance();
     }
@@ -58,9 +58,6 @@ abstract public class BaseActivity extends AppCompatActivity {
     }
 
     private OkHttpClient createOkHttpClient(){
-        //UnsafeOkHttpClient.setCookies(cookies);
-        //UnsafeOkHttpClient.setCsrfToken(csrfToken != null ? csrfToken.getToken() : "");
-
         Log.d(TAG, "Cookies: "  + cookies);
         Log.d(TAG, "Csrf: "  + (csrfToken != null ? csrfToken.getToken() : ""));
 
@@ -83,17 +80,28 @@ abstract public class BaseActivity extends AppCompatActivity {
         public void onResponse(Call<T> call, Response<T> response) {
             String cookies = getCookiesFromHeaders(response);
             BaseActivity.this.cookies = cookies;
-            //UnsafeOkHttpClient.setCookies(cookies);
+
             Log.d("Cookies: ", cookies);
-            if(!cookies.equals("")) {
-                ((ShopApplication) BaseActivity.this.getApplication()).setCookies(cookies);
-            }
+            if(!cookies.equals(""))
+                getShopApplication().setCookies(cookies);
         }
 
         @Override
         public void onFailure(Call<T> call, Throwable t) {
 
         }
+    }
+
+    protected void showProgressBar(){
+        // TODO: Show loading...
+    }
+
+    protected void hideProgressBar(){
+        // TODO: Hide loading...
+    }
+
+    public ShopApplication getShopApplication(){
+        return (ShopApplication) getApplication();
     }
 
     public static <T> String getCookiesFromHeaders(Response<T> response){

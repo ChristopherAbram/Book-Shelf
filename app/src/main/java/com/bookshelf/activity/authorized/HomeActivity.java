@@ -1,5 +1,6 @@
 package com.bookshelf.activity.authorized;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -19,8 +20,8 @@ import android.widget.Toast;
 
 import com.bookshelf.R;
 import com.bookshelf.activity.AccountActivity;
-import com.bookshelf.activity.BaseActivity;
 import com.bookshelf.activity.CategoriesActivity;
+import com.bookshelf.activity.FrontActivity;
 import com.bookshelf.activity.HistoryActivity;
 import com.bookshelf.activity.ItemActivity;
 import com.bookshelf.activity.ItemsActivity;
@@ -35,10 +36,11 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class HomeActivity extends BaseActivity
+public class HomeActivity extends AuthorizedActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private final String TAG = getClass().getName();
+    private final int LOG_OUT_CODE = 1;
 
     @BindView(R.id.text)
     TextView mRoles;
@@ -136,12 +138,36 @@ public class HomeActivity extends BaseActivity
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_log_out) {
-
+            showProgressBar();
+            Intent intent = new Intent(this, SignOutActivity.class);
+            startActivityForResult(intent, LOG_OUT_CODE);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == LOG_OUT_CODE) {
+            if(resultCode == Activity.RESULT_OK){
+                Toast.makeText(getBaseContext(), "Successfully Signed Out.", Toast.LENGTH_LONG).show();
+                toFront();
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                hideProgressBar();
+                if(data.getExtras().containsKey("result"))
+                    Toast.makeText(getBaseContext(), data.getExtras().get("result").toString(), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private void toFront(){
+        Intent intent = new Intent(this, FrontActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private class RoleCallback extends Callback<Role> {

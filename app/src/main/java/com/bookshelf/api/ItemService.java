@@ -16,6 +16,6 @@ public interface ItemService {
     Call<Items> getItems(@Query("page") String paginator);
 
     @GET("/api/items?transform=1")
-    Call<Items> getItemsSortedByName();
+    Call<Items> getItemsSortedByColumn(@Query("order") String columnName, @Query("page") String paginator);
 
 }
