@@ -6,7 +6,7 @@
     <color name="colorAccent">#385dba</color>
     <!--Extras-->
     <color name="colorWhite">#FFFFFF</color>
-    <color name="colorAlmostWhite">#EFEFEF</color>
-    <color name="colorSemiWhite">#CDCDCD</color>
-    <color name="colorGrayWhite">#9F9F9F</color>
+    <color name="colorAlmostWhite">#f0f0f0</color>
+    <color name="colorSemiWhite">#dcdcdc</color>
+    <color name="colorGrayWhite">#a0a0a0</color>
 </resources>

@@ -88,13 +88,10 @@ public class HomeActivity extends BaseActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home, menu);
 
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.action_search).getActionView();
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         ComponentName componentName = new ComponentName(getApplicationContext(), SearchActivity.class);
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(componentName));
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName));
         searchView.setOnQueryTextListener(
                 new SearchView.OnQueryTextListener() {
                     @Override
@@ -114,12 +111,6 @@ public class HomeActivity extends BaseActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        if (id == R.id.action_search) {
-            Intent intent = new Intent(this, ItemsActivity.class);
-            startActivity(intent);
-            return true;
-        }
 
         if (id == R.id.shopping_cart) {
             Intent intent = new Intent(this, ShoppingCartActivity.class);

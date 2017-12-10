@@ -29,9 +29,11 @@
         <activity android:name="com.bookshelf.activity.FrontActivity" />
         <activity
             android:name="com.bookshelf.activity.SignInActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:noHistory="true"/>
 
-        <activity android:name="com.bookshelf.activity.SignUpActivity" />
+        <activity android:name="com.bookshelf.activity.SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name="com.bookshelf.activity.ShoppingCartActivity"
             android:label="Shopping Cart">
