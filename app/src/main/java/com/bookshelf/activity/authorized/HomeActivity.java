@@ -30,6 +30,7 @@ import com.bookshelf.activity.SettingsActivity;
 import com.bookshelf.activity.ShoppingCartActivity;
 import com.bookshelf.api.RoleService;
 import com.bookshelf.data.Role;
+import com.bookshelf.data.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,6 +45,7 @@ public class HomeActivity extends AuthorizedActivity
 
     @BindView(R.id.text)
     TextView mRoles;
+    User currentUser = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +65,6 @@ public class HomeActivity extends AuthorizedActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
     }
 
     @Override
@@ -134,9 +134,6 @@ public class HomeActivity extends AuthorizedActivity
         } else if (id == R.id.nav_history) {
             Intent intent = new Intent(this, HistoryActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_settings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
         } else if (id == R.id.nav_log_out) {
             showProgressBar();
             Intent intent = new Intent(this, SignOutActivity.class);
@@ -189,6 +186,7 @@ public class HomeActivity extends AuthorizedActivity
             Toast.makeText(HomeActivity.this, "Something went wrong...", Toast.LENGTH_LONG).show();
         }
     }
+
     public void toAccount(View view) {
         Intent intent = new Intent(this, AccountActivity.class);
         startActivity(intent);
@@ -205,8 +203,4 @@ public class HomeActivity extends AuthorizedActivity
         startActivity(intent);
     }
 
-    public void toItems(View view) {
-        Intent intent = new Intent(this, ItemsActivity.class);
-        startActivity(intent);
-    }
 }

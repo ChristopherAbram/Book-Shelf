@@ -17,7 +17,7 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="114dp"
+        android:layout_height="110dp"
         android:orientation="vertical"
         android:gravity="center|start">
 
@@ -26,15 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
+            android:layout_marginBottom="12dp"
             android:text="Item Name" />
-
-        <TextView
-            android:id="@+id/short_desc_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="@color/colorGrayWhite"
-            android:text="Short item description." />
 
         <TextView
             android:id="@+id/price_text_view"
