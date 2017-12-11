@@ -46,11 +46,7 @@
         </activity>
         <activity
             android:name=".activity.AccountActivity"
-            android:label="Account">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.bookshelf.activity.authorized.HomeActivity" />
-        </activity>
+            android:label="Account" />
         <activity
             android:name=".activity.HistoryActivity"
             android:label="Your History">

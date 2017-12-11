@@ -67,6 +67,7 @@
                             android:layout_centerVertical="true"/>
 
                         <TextView
+                            android:id="@+id/firstname_lastname_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorGrayWhite"
@@ -90,6 +91,7 @@
                             android:layout_centerVertical="true"/>
 
                         <TextView
+                            android:id="@+id/email_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorGrayWhite"
@@ -113,6 +115,7 @@
                             android:layout_centerVertical="true"/>
 
                         <TextView
+                            android:id="@+id/gender_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorGrayWhite"
@@ -136,6 +139,7 @@
                             android:layout_centerVertical="true"/>
 
                         <TextView
+                            android:id="@+id/birthdate_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorGrayWhite"
@@ -175,6 +179,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/address_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:lineSpacingExtra="@dimen/card_padding"

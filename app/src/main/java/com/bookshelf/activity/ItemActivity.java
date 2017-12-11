@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bookshelf.R;
+import com.bookshelf.activity.authorized.HomeActivity;
 import com.bookshelf.adapter.CategoriesAdapter;
 import com.bookshelf.api.CategoryService;
 import com.bookshelf.api.ItemService;
@@ -32,6 +33,7 @@ import retrofit2.Response;
 public class ItemActivity extends BaseActivity {
 
     Item item = null;
+    User merchant = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,7 @@ public class ItemActivity extends BaseActivity {
             if(response.isSuccessful()){
                 TextView merchantName = findViewById(R.id.merchant_name);
                 merchantName.setText(response.body().getFirstname()+" "+response.body().getLastname());
+                merchant = response.body();
             }
             else
                 Toast.makeText(ItemActivity.this, "Unable to get user...", Toast.LENGTH_LONG).show();
@@ -95,6 +98,16 @@ public class ItemActivity extends BaseActivity {
                 TextView categoryTextView = findViewById(R.id.category_text_view);
                 categoryTextView.setText(response.body().getName());
                 hideProgressBar();
+
+                View merchantButton = findViewById(R.id.merchant_button);
+
+                merchantButton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent(ItemActivity.this, AccountActivity.class);
+                        intent.putExtra("user", merchant);
+                        startActivity(intent);
+                    }
+                });
             }
             else
                 Toast.makeText(ItemActivity.this, "Unable to get category...", Toast.LENGTH_LONG).show();
