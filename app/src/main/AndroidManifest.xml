@@ -30,12 +30,15 @@
             android:name=".activity.FrontActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name="com.bookshelf.activity.SignInActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:noHistory="true" />
-
-        <activity android:name="com.bookshelf.activity.SignUpActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:name=".activity.SignInActivity"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+        android:name=".activity.SignUpActivity"
+        android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SignUpAddressActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".activity.ShoppingCartActivity"
@@ -83,7 +86,7 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".activity.authorized.SignOutActivity"></activity>
+        <activity android:name=".activity.authorized.SignOutActivity" />
     </application>
 
 </manifest>

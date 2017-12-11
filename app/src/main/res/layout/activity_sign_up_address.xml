@@ -45,7 +45,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Registration"
+                android:text="Address"
                 android:textColor="@color/colorSemiWhite"
                 android:textSize="14sp" />
 
@@ -55,8 +55,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="14"
-            android:orientation="vertical"
-            android:gravity="center|top">
+            android:gravity="center|top"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -67,11 +67,30 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Firstname:"
+                    android:text="Country:"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/country"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="City:"
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/firstname"
+                    android:id="@+id/city"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorAlmostWhite"
@@ -83,17 +102,17 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lastname:"
+                    android:text="Zip:"
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/lastname"
+                    android:id="@+id/zip"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorAlmostWhite"
@@ -105,21 +124,21 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Email:"
+                    android:text="Street:"
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/street"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorAlmostWhite"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:textColor="@color/colorAlmostWhite" />
 
             </LinearLayout>
@@ -133,50 +152,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sex:"
-                    android:textStyle="bold" />
-
-                <RadioGroup
-                    android:id="@+id/sex"
-                    android:layout_width="250dp"
-                    android:layout_height="match_parent">
-
-                    <RadioButton
-                        android:id="@+id/male"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:checked="true"
-                        android:text="Male" />
-
-                    <RadioButton
-                        android:id="@+id/female"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Female" />
-                </RadioGroup>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Password:"
+                    android:text="House"
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/house"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorAlmostWhite"
-                    android:inputType="textPassword"
+                    android:inputType="textPersonName"
                     android:textColor="@color/colorAlmostWhite" />
 
             </LinearLayout>
@@ -190,51 +174,30 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Confirm password:"
+                    android:text="Flat"
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/confirm_password"
+                    android:id="@+id/flat"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorAlmostWhite"
-                    android:inputType="textPassword"
+                    android:inputType="textPersonName"
                     android:textColor="@color/colorAlmostWhite" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/sign_in"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Birth date:"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/bdate"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="date" />
-
-            </LinearLayout>
+                android:background="@drawable/round_button"
+                android:backgroundTint="@color/colorAccent"
+                android:text="Create Account"
+                android:textStyle="bold" />
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/sign_in"
-            android:layout_width="250dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/round_button"
-            android:backgroundTint="@color/colorAccent"
-            android:text="Next"
-            android:textStyle="bold" />
 
     </LinearLayout>
 </ScrollView>

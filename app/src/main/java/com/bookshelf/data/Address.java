@@ -24,6 +24,7 @@ public class Address implements Parcelable {
     private String house;
     private String flat;
 
+    public Address(){}
 
     @Override
     public int describeContents() {

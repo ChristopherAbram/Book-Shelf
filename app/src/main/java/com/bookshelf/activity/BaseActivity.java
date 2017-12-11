@@ -35,7 +35,9 @@ abstract public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setBaseUrl(Constants.API_SERVER_URL);
+
+        if(mURL == null)
+            setBaseUrl(Constants.API_SERVER_URL);
 
         // Get Csrf token, could be null:
         csrfToken = getShopApplication().getCsrfToken();
@@ -60,6 +62,11 @@ abstract public class BaseActivity extends AppCompatActivity {
     }
 
     private OkHttpClient createOkHttpClient(){
+        // Get Csrf token, could be null:
+        csrfToken = getShopApplication().getCsrfToken();
+        // Get session id:
+        cookies = getShopApplication().getCookies();
+
         Log.d(TAG, "Cookies: "  + cookies);
         Log.d(TAG, "Csrf: "  + (csrfToken != null ? csrfToken.getToken() : ""));
 
@@ -69,6 +76,15 @@ abstract public class BaseActivity extends AppCompatActivity {
     }
 
     private void buildRetrofitInstance(){
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl(mURL.toString())
+                .client(createOkHttpClient())
+                .addConverterFactory(GsonConverterFactory.create());
+
+        mRetrofit = builder.build();
+    }
+
+    protected void rebuildRetrofitInstance(){
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(mURL.toString())
                 .client(createOkHttpClient())
