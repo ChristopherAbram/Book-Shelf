@@ -1,10 +1,15 @@
 package com.bookshelf.activity;
 
+import android.app.SearchManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.bookshelf.R;
@@ -65,6 +70,31 @@ public class ItemsActivity extends BaseActivity {
             Call<Items> call = service.getItems();
             call.enqueue(new ItemsCallback());
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home, menu);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        ComponentName componentName = new ComponentName(getApplicationContext(), SearchActivity.class);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName));
+        searchView.setOnQueryTextListener(
+                new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String s) {
+                        finish();
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String s) {
+                        return false;
+                    }
+                }
+        );
+        return true;
     }
 
     private class ItemsCallback extends Callback<Items> {

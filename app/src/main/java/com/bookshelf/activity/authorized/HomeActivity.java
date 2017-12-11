@@ -118,13 +118,15 @@ public class HomeActivity extends AuthorizedActivity
         getMenuInflater().inflate(R.menu.home, menu);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        final SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         ComponentName componentName = new ComponentName(getApplicationContext(), SearchActivity.class);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName));
         searchView.setOnQueryTextListener(
                 new SearchView.OnQueryTextListener() {
                     @Override
                     public boolean onQueryTextSubmit(String s) {
+                        searchView.clearFocus();
+                        searchView.setQuery("", false);
                         return false;
                     }
 
