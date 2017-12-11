@@ -1,129 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.bookshelf.activity.SignInActivity"
-    android:weightSum="16"
-    android:orientation="vertical"
-    android:padding="@dimen/activity_padding">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.25"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <ImageView
-            android:layout_width="30sp"
-            android:layout_height="30sp"
-            android:src="@drawable/ic_bookmark_black_24dp"
-            android:tint="@color/colorAlmostWhite"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BookShelf"
-            android:textStyle="bold"
-            android:textSize="18sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.75"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign in with your BookShelf account."
-            android:textColor="@color/colorSemiWhite"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="14"
+        android:layout_height="match_parent"
+        tools:context="com.bookshelf.activity.SignInActivity"
+        android:weightSum="16"
         android:orientation="vertical"
-        android:gravity="center|top">
+        android:padding="@dimen/activity_padding">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="15dp">
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.25"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:src="@drawable/ic_bookmark_black_24dp"
+                android:tint="@color/colorAlmostWhite"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email:"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorAlmostWhite"
-                android:inputType="textEmailAddress"
-                android:text="admin@gmail.com"
-                android:textColor="@color/colorAlmostWhite" />
+                android:text="BookShelf"
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="15dp">
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.75"
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Password:"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorAlmostWhite"
-                android:inputType="textPassword"
-                android:text="password"
-                android:textColor="@color/colorAlmostWhite" />
+                android:text="Sign in with your BookShelf account."
+                android:textColor="@color/colorSemiWhite"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/sign_in"
-            android:layout_width="220dp"
-            android:layout_height="38dp"
-            android:backgroundTint="@color/colorAccent"
-            android:text="Sign In"
-            android:layout_marginTop="15dp"
-            android:textStyle="bold"
-            android:background="@drawable/round_button"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="14"
+            android:orientation="vertical"
+            android:gravity="center|top">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New to BookShelf?"
-            android:layout_marginTop="15dp"
-            android:onClick="toSignUp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Forgot your password?"
-            android:layout_marginTop="15dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email:"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorAlmostWhite"
+                    android:inputType="textEmailAddress"
+                    android:text="admin@gmail.com"
+                    android:textColor="@color/colorAlmostWhite" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password:"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorAlmostWhite"
+                    android:inputType="textPassword"
+                    android:text="password"
+                    android:textColor="@color/colorAlmostWhite" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/sign_in"
+                android:layout_width="220dp"
+                android:layout_height="38dp"
+                android:backgroundTint="@color/colorAccent"
+                android:text="Sign In"
+                android:layout_marginTop="15dp"
+                android:textStyle="bold"
+                android:background="@drawable/round_button"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New to BookShelf?"
+                android:layout_marginTop="15dp"
+                android:onClick="toSignUp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Forgot your password?"
+                android:layout_marginTop="15dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+    <include layout="@layout/loading_progress" />
+
+</RelativeLayout>
+
+
+

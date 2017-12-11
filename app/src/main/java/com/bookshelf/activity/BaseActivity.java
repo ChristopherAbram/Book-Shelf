@@ -3,7 +3,9 @@ package com.bookshelf.activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
+import com.bookshelf.R;
 import com.bookshelf.application.Constants;
 import com.bookshelf.application.ShopApplication;
 import com.bookshelf.data.CsrfToken;
@@ -93,11 +95,12 @@ abstract public class BaseActivity extends AppCompatActivity {
     }
 
     protected void showProgressBar(){
-        // TODO: Show loading...
+        findViewById(R.id.loading_panel).bringToFront();
+        findViewById(R.id.loading_panel).setVisibility(View.VISIBLE);
     }
 
     protected void hideProgressBar(){
-        // TODO: Hide loading...
+        findViewById(R.id.loading_panel).setVisibility(View.GONE);
     }
 
     public ShopApplication getShopApplication(){

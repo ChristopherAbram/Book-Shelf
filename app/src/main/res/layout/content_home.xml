@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.bookshelf.activity.authorized.HomeActivity"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:showIn="@layout/app_bar_home">
 
     <LinearLayout
@@ -19,39 +18,45 @@
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorSemiWhite"/>
+            android:textColor="@color/colorPrimary" />
 
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="20dp"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <android.support.v7.widget.CardView
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="240dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    card_view:cardCornerRadius="2dp"
                     android:layout_marginEnd="@dimen/activity_padding"
-                    android:onClick="toCategories">
+                    android:layout_marginStart="10dp"
+                    android:onClick="toCategories"
+                    card_view:cardCornerRadius="2dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:scaleType="fitXY"
                         android:src="@drawable/ic_launcher_background"
-                        android:scaleType="fitXY"/>
+                        android:tint="@color/colorAccent" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:src="@drawable/ic_folder_black_24dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -64,83 +69,93 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Discover items by genres"
-                            android:textColor="@color/colorSemiWhite"/>
+                            android:textColor="@color/colorSemiWhite" />
 
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
 
-                <android.support.v7.widget.CardView
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="240dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    card_view:cardCornerRadius="2dp"
-                    android:layout_marginEnd="@dimen/activity_padding"
-                    android:onClick="toItem">
+                    android:layout_marginEnd="10dp"
+                    android:onClick="toSaleItems"
+                    card_view:cardCornerRadius="2dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:scaleType="fitXY"
                         android:src="@drawable/ic_launcher_background"
-                        android:scaleType="fitXY"/>
+                        android:tint="@color/colorAccent" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:src="@drawable/ic_loyalty_black_24dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Item Name"
+                            android:text="On Sale"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Short item description."
-                            android:textColor="@color/colorSemiWhite"/>
+                            android:text="Don't miss special deals."
+                            android:textColor="@color/colorSemiWhite" />
 
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
 
-                <android.support.v7.widget.CardView
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="240dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    card_view:cardCornerRadius="2dp"
                     android:layout_marginEnd="@dimen/activity_padding"
-                    android:onClick="toItem">
+                    android:onClick="toRandomItem"
+                    card_view:cardCornerRadius="2dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:scaleType="fitXY"
                         android:src="@drawable/ic_launcher_background"
-                        android:scaleType="fitXY"/>
+                        android:tint="@color/colorAccent" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:src="@drawable/ic_toys_black_24dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Item Name"
+                            android:text="Random Item"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Short item description."
-                            android:textColor="@color/colorSemiWhite"/>
+                            android:text="I feel lucky today."
+                            android:textColor="@color/colorSemiWhite" />
 
                     </LinearLayout>
 
@@ -153,68 +168,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Discover"
-            android:textStyle="bold"
-            android:textSize="16sp"
+            android:layout_marginBottom="10dp"
             android:layout_marginStart="@dimen/activity_padding"
-            android:layout_marginBottom="10dp"/>
+            android:text="Discover"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-        <LinearLayout
+        <ListView
+            android:id="@+id/list_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="3"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp">
-
-                <android.support.v7.widget.CardView
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="0dp"
-                    android:layout_height="110dp"
-                    android:layout_gravity="center"
-                    card_view:cardCornerRadius="2dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginEnd="3dp"
-                    card_view:cardBackgroundColor="@color/colorPrimaryDark"
-                    android:onClick="toItem">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center|top">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:src="@drawable/ic_launcher_background"
-                            android:scaleType="fitXY"/>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:text="0.00 EUR" />
-
-                        </RelativeLayout>
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-            </LinearLayout>
-
-        </LinearLayout>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
-</ScrollView>
+    <include layout="@layout/loading_progress" />
+
+</RelativeLayout>
+

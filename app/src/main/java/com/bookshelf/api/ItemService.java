@@ -19,9 +19,6 @@ public interface ItemService {
     Call<Items> getItems();
 
     @GET("/api/items?transform=1")
-    Call<Items> getItems(@Query("page") String paginator);
-
-    @GET("/api/items?transform=1")
     Call<Items> getItemByFilter(@Query("filter") String category);
 
     @GET("/api/users/{id}")

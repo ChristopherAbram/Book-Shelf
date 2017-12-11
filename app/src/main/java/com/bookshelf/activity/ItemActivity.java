@@ -3,6 +3,7 @@ package com.bookshelf.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
@@ -17,11 +18,13 @@ import com.bookshelf.data.Category;
 import com.bookshelf.data.Item;
 import com.bookshelf.data.User;
 import com.bookshelf.data.collection.Categories;
+import com.bookshelf.data.collection.Items;
 import com.bookshelf.data.collection.Users;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -34,6 +37,7 @@ public class ItemActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
+        showProgressBar();
 
         Bundle extras = getIntent().getExtras();
         item = (Item) extras.get("item");
@@ -43,6 +47,8 @@ public class ItemActivity extends BaseActivity {
     protected void onStart(){
         super.onStart();
 
+        ItemService service = generateCallService(ItemService.class);
+
         TextView nameTextView = findViewById(R.id.name_text_view);
         nameTextView.setText(item.getName());
 
@@ -51,8 +57,6 @@ public class ItemActivity extends BaseActivity {
 
         TextView longDescTextView = findViewById(R.id.long_desc_text_view);
         longDescTextView.setText(item.getDescription());
-
-        ItemService service = generateCallService(ItemService.class);
 
         Call<User> callUser = service.getUserByID(item.getUserId());
         callUser.enqueue(new UserCallback());
@@ -71,7 +75,7 @@ public class ItemActivity extends BaseActivity {
                 merchantName.setText(response.body().getFirstname()+" "+response.body().getLastname());
             }
             else
-                Toast.makeText(ItemActivity.this, "Unable to get items...", Toast.LENGTH_LONG).show();
+                Toast.makeText(ItemActivity.this, "Unable to get user...", Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -90,9 +94,10 @@ public class ItemActivity extends BaseActivity {
             if(response.isSuccessful()){
                 TextView categoryTextView = findViewById(R.id.category_text_view);
                 categoryTextView.setText(response.body().getName());
+                hideProgressBar();
             }
             else
-                Toast.makeText(ItemActivity.this, "Unable to get items...", Toast.LENGTH_LONG).show();
+                Toast.makeText(ItemActivity.this, "Unable to get category...", Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -102,4 +107,5 @@ public class ItemActivity extends BaseActivity {
         }
 
     }
+
 }

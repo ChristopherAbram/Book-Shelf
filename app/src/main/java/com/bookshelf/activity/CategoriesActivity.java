@@ -30,6 +30,8 @@ public class CategoriesActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
+        showProgressBar();
+
         listView = findViewById(R.id.list_view);
     }
 
@@ -50,6 +52,7 @@ public class CategoriesActivity extends BaseActivity {
                 final ArrayList<Category> list = response.body().getCategories();
                 CategoriesAdapter adapter = new CategoriesAdapter(getBaseContext(), list);
                 listView.setAdapter(adapter);
+                hideProgressBar();
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override

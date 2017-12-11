@@ -11,9 +11,16 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,9 +35,18 @@ import com.bookshelf.activity.ItemsActivity;
 import com.bookshelf.activity.SearchActivity;
 import com.bookshelf.activity.SettingsActivity;
 import com.bookshelf.activity.ShoppingCartActivity;
+import com.bookshelf.adapter.ItemsAdapter;
+import com.bookshelf.api.ItemService;
 import com.bookshelf.api.RoleService;
+import com.bookshelf.data.Item;
 import com.bookshelf.data.Role;
 import com.bookshelf.data.User;
+import com.bookshelf.data.collection.Items;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,6 +61,10 @@ public class HomeActivity extends AuthorizedActivity
 
     @BindView(R.id.text)
     TextView mRoles;
+
+    @BindView(R.id.list_view)
+    ListView listView;
+
     User currentUser = null;
 
     @Override
@@ -74,6 +94,10 @@ public class HomeActivity extends AuthorizedActivity
         RoleService roles = generateCallService(RoleService.class);
         Call<Role> call = roles.getRoleById(1);
         call.enqueue(new RoleCallback());
+
+        ItemService service = generateCallService(ItemService.class);
+        Call<Items> callItems = service.getItems();
+        callItems.enqueue(new ItemsCallback());
     }
 
     @Override
@@ -167,6 +191,34 @@ public class HomeActivity extends AuthorizedActivity
         finish();
     }
 
+    public void toSaleItems(View view) {
+        Intent intent = new Intent(this, ItemsActivity.class);
+        intent.putExtra("searchType","sale");
+        startActivity(intent);
+    }
+
+    public void toRandomItem(View view) {
+        ItemService service = generateCallService(ItemService.class);
+        Call<Items> callItems = service.getItems();
+        callItems.enqueue(new RandomItemsCallback());
+    }
+
+    public void toAccount(View view) {
+        Intent intent = new Intent(this, AccountActivity.class);
+        startActivity(intent);
+    }
+
+    public void toCategories(View view) {
+        Intent intent = new Intent(this, CategoriesActivity.class);
+        startActivity(intent);
+    }
+
+    public void toItem(View view) {
+        Intent intent = new Intent(this, ItemActivity.class);
+        intent.putExtra("itemID", "55555555");
+        startActivity(intent);
+    }
+
     private class RoleCallback extends Callback<Role> {
         @Override
         public void onResponse(Call<Role> call, Response<Role> response) {
@@ -187,20 +239,65 @@ public class HomeActivity extends AuthorizedActivity
         }
     }
 
-    public void toAccount(View view) {
-        Intent intent = new Intent(this, AccountActivity.class);
-        startActivity(intent);
+    private class RandomItemsCallback extends Callback<Items> {
+
+        @Override
+        public void onResponse(Call<Items> call, Response<Items> response) {
+            super.onResponse(call, response);
+
+            if(response.isSuccessful()){
+                Intent intent = new Intent(HomeActivity.this, ItemActivity.class);
+                ArrayList<Item> list = response.body().getItems();
+                Collections.shuffle(list);
+                intent.putExtra("item", list.get(0));
+                startActivity(intent);
+            }
+            else
+                Toast.makeText(HomeActivity.this, "Unable to get items...", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onFailure(Call<Items> call, Throwable t) {
+            super.onFailure(call, t);
+
+            Toast.makeText(HomeActivity.this, "Ooopsss...", Toast.LENGTH_LONG).show();
+        }
+
     }
 
-    public void toCategories(View view) {
-        Intent intent = new Intent(this, CategoriesActivity.class);
-        startActivity(intent);
-    }
+    private class ItemsCallback extends Callback<Items> {
 
-    public void toItem(View view) {
-        Intent intent = new Intent(this, ItemActivity.class);
-        intent.putExtra("itemID", "55555555");
-        startActivity(intent);
+        @Override
+        public void onResponse(Call<Items> call, Response<Items> response) {
+            super.onResponse(call, response);
+
+            if(response.isSuccessful()){
+                final ArrayList<Item>  list = response.body().getItems();
+                Collections.shuffle(list);
+                ItemsAdapter adapter = new ItemsAdapter(getBaseContext(), list);
+                listView.setAdapter(adapter);
+                hideProgressBar();
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Item item = list.get(position);
+                        Intent intent = new Intent(HomeActivity.this, ItemActivity.class);
+                        intent.putExtra("item", item);
+                        startActivity(intent);
+                    }
+                });
+            }
+            else
+                Toast.makeText(HomeActivity.this, "Unable to get items...", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onFailure(Call<Items> call, Throwable t) {
+            super.onFailure(call, t);
+
+            Toast.makeText(HomeActivity.this, "Ooopsss...", Toast.LENGTH_LONG).show();
+        }
     }
 
 }
