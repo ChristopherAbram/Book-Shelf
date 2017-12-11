@@ -1,6 +1,7 @@
 package com.bookshelf.api;
 
 import com.bookshelf.data.Category;
+import com.bookshelf.data.Item;
 import com.bookshelf.data.User;
 import com.bookshelf.data.collection.Items;
 
@@ -17,6 +18,9 @@ public interface ItemService {
 
     @GET("/api/items?transform=1")
     Call<Items> getItems();
+
+    @GET("/api/items/{id}")
+    Call<Item> getItemByID(@Path("id") Integer id);
 
     @GET("/api/items?transform=1")
     Call<Items> getItemByFilter(@Query("filter") String category);

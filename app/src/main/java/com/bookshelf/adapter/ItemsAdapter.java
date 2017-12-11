@@ -13,7 +13,17 @@ import com.bookshelf.data.Item;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ItemsAdapter extends ArrayAdapter<Item> {
+
+    @BindView(R.id.name_text_view)
+    TextView nameTextView;
+
+    @BindView(R.id.price_text_view)
+    TextView priceTextView;
+
     private Context context;
     private ArrayList<Item> items;
 
@@ -27,15 +37,10 @@ public class ItemsAdapter extends ArrayAdapter<Item> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.list_items, parent, false);
-
+        ButterKnife.bind(this, rowView);
         Item item = items.get(position);
-
-        TextView nameTextView = rowView.findViewById(R.id.name_text_view);
         nameTextView.setText(item.getName());
-
-        TextView priceTextView = rowView.findViewById(R.id.price_text_view);
         priceTextView.setText(item.getPrice()+" EUR");
-
         return rowView;
     }
 

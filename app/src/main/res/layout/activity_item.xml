@@ -172,7 +172,7 @@
                             <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
-                                android:src="@drawable/ic_launcher_foreground"/>
+                                android:src="@drawable/ic_account_circle_black_24dp"/>
 
                             <TextView
                                 android:id="@+id/merchant_name"

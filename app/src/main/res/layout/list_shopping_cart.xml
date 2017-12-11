@@ -38,16 +38,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="1 x "
+                android:text="1"
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text=" x "
                 android:textColor="@color/colorAccent" />
 
             <TextView
                 android:id="@+id/price_text_view"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:layout_height="match_parent"
                 android:text="0.00 "
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/currency_text_view"

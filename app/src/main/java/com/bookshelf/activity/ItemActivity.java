@@ -104,7 +104,7 @@ public class ItemActivity extends BaseActivity {
                 merchantButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent(ItemActivity.this, AccountActivity.class);
-                        intent.putExtra("user", merchant);
+                        intent.putExtra("userId", merchant.getId());
                         startActivity(intent);
                     }
                 });
