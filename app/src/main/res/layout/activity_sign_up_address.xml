@@ -58,16 +58,6 @@
             android:gravity="center|top"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/sign_in"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/round_button"
-                android:backgroundTint="@color/colorAccent"
-                android:text="Create Account"
-                android:textStyle="bold" />
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -196,6 +186,16 @@
                     android:textColor="@color/colorAlmostWhite" />
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/sign_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/round_button"
+                android:backgroundTint="@color/colorAccent"
+                android:text="Create Account"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

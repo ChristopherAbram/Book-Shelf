@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SignUpAddressActivity">
+        <activity android:name=".activity.LandingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +31,10 @@
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.SignUpActivity"
+        android:name=".activity.SignUpActivity"
+        android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SignUpAddressActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.ShoppingCartActivity"

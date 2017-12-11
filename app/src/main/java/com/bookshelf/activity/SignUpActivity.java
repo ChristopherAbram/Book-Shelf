@@ -56,6 +56,7 @@ public class SignUpActivity extends BaseActivity {
                 if(isValid()){
                     // Go to address:
                     toSignUpAddress(user);
+                    //Toast.makeText(getBaseContext(), "" + user, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -70,14 +71,23 @@ public class SignUpActivity extends BaseActivity {
 
     private boolean isValid(){
         // validate form...
-        // form should not be empty..
         user = getUserFromView();
-        if(!user.getPassword().equals(confirm_password.getText().toString())){
-            // TODO: inform user that passwords are not the same
-            Toast.makeText(getBaseContext(), "Password must be the same.", Toast.LENGTH_LONG).show();
-            return false;
-        }
 
+        try {
+            if (user.getFirstname().equals("") || user.getLastname().equals("") || user.getEmail().equals("") ||
+                    user.getPassword().equals("")) {
+                Toast.makeText(getBaseContext(), "Only birth date can be empty.", Toast.LENGTH_LONG).show();
+                return false;
+            }
+
+            if (!user.getPassword().equals(confirm_password.getText().toString())) {
+                // TODO: inform user that passwords are not the same
+                Toast.makeText(getBaseContext(), "Passwords must be the same.", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
         // TODO: Check validity of email, birth date and so on...
 
         return true;
@@ -90,7 +100,7 @@ public class SignUpActivity extends BaseActivity {
         user.setLastname(lastname.getText().toString());
         user.setEmail(email.getText().toString());
         user.setPassword(password.getText().toString());
-        user.setBdate(bdate.getText().toString());
+        user.setBdate(null);
 
         int selectedId = sex.getCheckedRadioButtonId();
         RadioButton rb = (RadioButton) findViewById(selectedId);
@@ -99,6 +109,4 @@ public class SignUpActivity extends BaseActivity {
 
         return user;
     }
-
-
 }

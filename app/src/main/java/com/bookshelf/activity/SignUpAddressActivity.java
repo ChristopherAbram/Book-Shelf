@@ -1,21 +1,31 @@
 package com.bookshelf.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bookshelf.R;
+import com.bookshelf.activity.authorized.SignOutActivity;
+import com.bookshelf.api.AddressService;
 import com.bookshelf.api.Authentication;
 import com.bookshelf.api.CountryService;
+import com.bookshelf.api.UserService;
+import com.bookshelf.application.Constants;
 import com.bookshelf.data.Address;
+import com.bookshelf.data.Country;
 import com.bookshelf.data.CsrfToken;
 import com.bookshelf.data.User;
 import com.bookshelf.data.collection.Countries;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,13 +57,18 @@ public class SignUpAddressActivity extends BaseActivity {
     @BindView(R.id.sign_in)
     Button signIn;
 
+    private final int LOG_OUT_CODE = 1;
+
     private User mUser;
     private Address mAddress;
 
     private Countries mCountries;
+    private Country mSelectedCountry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setBaseUrl(Constants.AUTH_SERVER_URL);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_address);
 
@@ -64,7 +79,12 @@ public class SignUpAddressActivity extends BaseActivity {
         country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                try {
+                    mSelectedCountry = mCountries.getCountries().get(position);
+                    Toast.makeText(SignUpAddressActivity.this, "Selected: " + mSelectedCountry.getName(), Toast.LENGTH_LONG).show();
+                } catch(NullPointerException e){
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -78,11 +98,17 @@ public class SignUpAddressActivity extends BaseActivity {
             public void onClick(View v) {
                 if(isValid()){
                     showProgressBar();
-                    authenticateToPlainUser();
-
+                    postUser();
                 }
             }
         });
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        showProgressBar();
+        authenticateToPlainUser();
     }
 
     private User getUserFromBundle(){
@@ -106,11 +132,17 @@ public class SignUpAddressActivity extends BaseActivity {
     }
 
     private boolean isValid(){
-
         mAddress = getAddressFromView();
 
-        // ...
-
+        try {
+            if (mAddress.getCity().equals("") || mAddress.getZip().equals("") || mAddress.getStreet().equals("")) {
+                Toast.makeText(SignUpAddressActivity.this, "City, Zip and Street can't be empty.", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        } catch(NullPointerException e){
+            Toast.makeText(SignUpAddressActivity.this, "City, Zip and Street can't be empty.", Toast.LENGTH_LONG).show();
+            return false;
+        }
         return true;
     }
 
@@ -121,9 +153,96 @@ public class SignUpAddressActivity extends BaseActivity {
     }
 
     private void getCountries(){
+        setBaseUrl(Constants.API_SERVER_URL);
+        rebuildRetrofitInstance();
         CountryService c = generateCallService(CountryService.class);
         Call<Countries> call = c.getAllCountries();
         call.enqueue(new CountriesCallback());
+    }
+
+    private void postUser(){
+        mUser.setRoleId(3);
+        UserService c = generateCallService(UserService.class);
+        Call<String> call = c.addUser(mUser);
+        call.enqueue(new Callback<String>(){
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                super.onResponse(call, response);
+                if(response.isSuccessful()){
+                    Log.d(TAG, "Last user id: " + response.body());
+                    if(response.body()!= null && !response.body().equals("null")) {
+                        Integer userId = Integer.parseInt(response.body());
+                        Log.d(TAG, "Last user id: " + userId);
+                        postAddress(userId);
+                    }
+                    else {
+                        Toast.makeText(SignUpAddressActivity.this, "Problem with adding new account.", Toast.LENGTH_LONG).show();
+                    }
+                }
+                else {
+                    Toast.makeText(SignUpAddressActivity.this, "Problem with adding new account.", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                super.onFailure(call, t);
+                Toast.makeText(SignUpAddressActivity.this, "Problem with adding new account.", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void postAddress(Integer userId){
+        mAddress.setUserId(userId);
+        if(mSelectedCountry != null)
+            mAddress.setCountryId(mSelectedCountry.getId());
+        AddressService c = generateCallService(AddressService.class);
+        Call<String> call = c.addAddress(mAddress);
+        call.enqueue(new Callback<String>(){
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                super.onResponse(call, response);
+
+                if(response.isSuccessful()){
+                    Log.d(TAG, "LastAddressId: " + response.body());
+                    logoutPlain();
+                }
+                else {
+                    Toast.makeText(SignUpAddressActivity.this, "Account added but adding address failed.", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                super.onFailure(call, t);
+                Toast.makeText(SignUpAddressActivity.this, "Account added but adding address failed.", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void logoutPlain(){
+        Intent intent = new Intent(this, SignOutActivity.class);
+        startActivityForResult(intent, LOG_OUT_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == LOG_OUT_CODE) {
+            if(resultCode == Activity.RESULT_OK){
+                toFront();
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                hideProgressBar();
+                if(data.getExtras().containsKey("result"))
+                    Toast.makeText(getBaseContext(), data.getExtras().get("result").toString(), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private void toFront(){
+        Intent intent = new Intent(this, FrontActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private class AuthenticationCallback extends Callback<CsrfToken> {
@@ -140,8 +259,6 @@ public class SignUpAddressActivity extends BaseActivity {
                 Log.d(TAG, csrf.getToken());
 
                 getCountries();
-
-                //toHome();
             }
             else {
                 // TODO: Inform user that has specified wrong credentials:
@@ -159,19 +276,28 @@ public class SignUpAddressActivity extends BaseActivity {
         @Override
         public void onResponse(Call<Countries> call, Response<Countries> response) {
             super.onResponse(call, response);
-
+            hideProgressBar();
             if(response.isSuccessful()){
-                Toast.makeText(SignUpAddressActivity.this, response.body().toString(), Toast.LENGTH_LONG).show();
+                mCountries = response.body();
+                ArrayList<String> countryNames = new ArrayList<>();
+                for(Country country : mCountries.getCountries())
+                    countryNames.add(country.getName());
+
+                // TODO: adapter can be improved..
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(SignUpAddressActivity.this, android.R.layout.simple_spinner_item, countryNames);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                SignUpAddressActivity.this.country.setAdapter(adapter);
             }
             else {
-                Toast.makeText(SignUpAddressActivity.this, "asdf", Toast.LENGTH_LONG).show();
+                Toast.makeText(SignUpAddressActivity.this, "Unable to fetch countries.", Toast.LENGTH_LONG).show();
             }
         }
 
         @Override
         public void onFailure(Call<Countries> call, Throwable t) {
             super.onFailure(call, t);
-
+            hideProgressBar();
             Toast.makeText(SignUpAddressActivity.this, "Failed", Toast.LENGTH_LONG).show();
         }
     }
