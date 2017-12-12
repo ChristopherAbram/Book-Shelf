@@ -53,10 +53,9 @@ public class ShoppingCartActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Item item = new Item();
-                item.setName("BookShelf: Your shopping.");
+                item.setName("Bookshelf - Shopping Cart");
                 item.setAmount(1);
                 item.setPrice(totalPrice);
-
                 Intent resultIntent = new Intent(getBaseContext(), CardFormActivity.class);
                 resultIntent.putExtra("item", item);
                 startActivity(resultIntent);

@@ -116,7 +116,10 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity android:name=".activity.authorized.SignOutActivity" />
-        <activity android:name=".activity.authorized.payment.CardFormActivity" />
+        <activity android:name=".activity.authorized.payment.CardFormActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.CardActivity" />
         <activity android:name=".activity.authorized.payment.AndroidPayActivity" />
         <activity android:name=".activity.authorized.payment.ResultActivity"
             android:screenOrientation="portrait" />

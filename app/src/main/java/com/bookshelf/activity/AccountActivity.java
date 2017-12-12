@@ -63,17 +63,14 @@ public class AccountActivity extends BaseActivity {
         public void onResponse(Call<FullUsers> call, Response<FullUsers> response) {
             super.onResponse(call, response);
             if(response.isSuccessful()){
-
-                Toast.makeText(AccountActivity.this, response.body().toString(), Toast.LENGTH_LONG).show();
-                //TODO: don't know why it's null, have to use collection because /api/fullusers need to use @Query filter, instead of @Path id.
-                // I think it's due to data.FullUser maybe something is wrong.
-
-//                fullUser = response.body().getFullUsers().get(0);
-//                firstnameLastnameTextView.setText(fullUser.getFirstname()+" "+fullUser.getLastname());
-//                emailTextView.setText(fullUser.getEmail());
-//                genderTextView.setText(fullUser.getSex()+"");
-//                birthdateTextView.setText(fullUser.getBdate());
-//                addressTextView.setText(fullUser.getPhone()+"\n"+fullUser.getStreet()+"\n"+fullUser.getCity()+"\n"+fullUser.getZip()+"\n"+fullUser.getCountry());
+                fullUser = response.body().getFullusers().get(0);
+                firstnameLastnameTextView.setText(fullUser.getFirstname()+" "+fullUser.getLastname());
+                emailTextView.setText(fullUser.getEmail());
+                genderTextView.setText(fullUser.getSex()+"");
+                birthdateTextView.setText(fullUser.getBdate());
+                String address = "";
+                address += checkIfNull(fullUser.getPhone()) + checkIfNull(fullUser.getStreet()) + checkIfNull(fullUser.getCity()) + checkIfNull(fullUser.getZip()) + fullUser.getCountry();
+                addressTextView.setText(address);
                 hideProgressBar();
             }
             else
@@ -86,6 +83,15 @@ public class AccountActivity extends BaseActivity {
             Toast.makeText(AccountActivity.this, "Ooopsss...", Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    public String checkIfNull(String string) {
+        if(string != null) {
+            if(string.length() > 1) {
+                return string+"\n";
+            }
+        }
+        return "";
     }
 
 }

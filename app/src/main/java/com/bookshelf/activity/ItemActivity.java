@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.bookshelf.R;
 import com.bookshelf.activity.authorized.HomeActivity;
+import com.bookshelf.activity.authorized.payment.CardFormActivity;
 import com.bookshelf.adapter.CategoriesAdapter;
 import com.bookshelf.api.CategoryService;
 import com.bookshelf.api.ItemService;
@@ -66,6 +67,7 @@ public class ItemActivity extends BaseActivity {
     TextView amountNumber;
 
     int amount;
+    float price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,10 +84,10 @@ public class ItemActivity extends BaseActivity {
     @Override
     protected void onStart(){
         super.onStart();
-
+        price = item.getPrice();
         nameTextView.setText(item.getName());
         longDescTextView.setText(item.getDescription());
-        priceTextView.setText(item.getPrice().toString());
+        priceTextView.setText(item.getPrice()+" EUR");
         if(!item.getPicture().isEmpty()) {
             Glide.with(getBaseContext()).load("https://bookshelf.krzysztofabram.pl/images/"+item.getPicture()+".png").into(imageView);
         }else {
@@ -162,6 +164,17 @@ public class ItemActivity extends BaseActivity {
             amount--;
             amountNumber.setText(amount+"");
         }
+    }
+
+    public void buyNow(View view) {
+        Item item = new Item();
+        item.setName("BookShelf: Your shopping.");
+        item.setAmount(1);
+        item.setPrice(amount * price);
+
+        Intent resultIntent = new Intent(getBaseContext(), CardFormActivity.class);
+        resultIntent.putExtra("item", item);
+        startActivity(resultIntent);
     }
 
 }

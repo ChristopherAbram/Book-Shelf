@@ -121,8 +121,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
             android:text="@string/confirm"
-            android:textColor="@color/green"
             android:layout_alignParentBottom="true"
+            android:backgroundTint="@color/colorAccent"
             android:onClick="confirmButton"/>
 
     </RelativeLayout>
