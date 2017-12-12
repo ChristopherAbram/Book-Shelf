@@ -8,10 +8,9 @@
 
     <ImageView
         android:id="@+id/image_view"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginRight="14dp"
         android:layout_gravity="center"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="14dp"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/ic_launcher_background" />
@@ -20,6 +19,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/date_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="date"
+            android:textColor="@color/colorGrayWhite" />
 
         <TextView
             android:id="@+id/name_text_view"
@@ -55,25 +61,18 @@
                 android:layout_height="match_parent"
                 android:text="0.00 "
                 android:textColor="@color/colorAccent"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/currency_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="EUR"
-                android:textColor="@color/colorAccent" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/remove_text_view"
+            android:id="@+id/total_price_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="@string/remove_shopping_cart_item"
-            android:textColor="@color/colorGrayWhite" />
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="0.00 EUR"
+            android:textColor="@color/colorAlmostWhite" />
 
     </LinearLayout>
 

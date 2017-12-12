@@ -1,30 +1,17 @@
 package com.bookshelf.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.bookshelf.R;
-import com.bookshelf.activity.BaseActivity;
-import com.bookshelf.activity.ShoppingCartActivity;
-import com.bookshelf.api.CartService;
-import com.bookshelf.api.ItemService;
 import com.bookshelf.data.Cart;
 import com.bookshelf.data.Item;
-import com.bookshelf.data.collection.Carts;
-
 import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Response;
 
 public class ShoppingCartAdapter extends ArrayAdapter<Cart>  {
 
@@ -57,11 +44,22 @@ public class ShoppingCartAdapter extends ArrayAdapter<Cart>  {
         View rowView = inflater.inflate(R.layout.list_shopping_cart, parent, false);
         ButterKnife.bind(this, rowView);
         Cart cart = carts.get(position);
+        Item item = findItemById(items, cart.getItemId());
 
-        nameTextView.setText(items.);
+        nameTextView.setText(item.getName());
         amountTextView.setText(cart.getAmount().toString());
+        priceTextView.setText(item.getPrice().toString());
 
         return rowView;
     }
 
+
+    public Item findItemById(ArrayList<Item> items, int id) {
+        for(Item item : items) {
+            if(item.getId().equals(id)) {
+                return item;
+            }
+        }
+        return null;
+    }
 }

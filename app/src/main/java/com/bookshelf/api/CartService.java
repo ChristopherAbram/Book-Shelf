@@ -14,6 +14,6 @@ import retrofit2.http.Query;
 public interface CartService {
 
     @GET("/api/carts?transform=1")
-    Call<Carts> getCartsByFilter(@Query("filter") String category);
+    Call<Carts> getCartsByFilter(@Query("filter") String filter);
 
 }

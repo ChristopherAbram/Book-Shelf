@@ -7,10 +7,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bookshelf.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import com.bookshelf.adapter.ItemsAdapter;
@@ -35,8 +37,12 @@ public class ShoppingCartActivity extends BaseActivity {
     @BindView(R.id.pay_button)
     Button payButton;
 
+    @BindView(R.id.price_text_view)
+    TextView priceTextView;
+
     private int userId;
     ArrayList<Item> items;
+    float totalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,39 +58,8 @@ public class ShoppingCartActivity extends BaseActivity {
     public void onStart() {
         super.onStart();
         ItemService itemsService = generateCallService(ItemService.class);
-        Call<Items> itemsCallcall = itemsService.getItems();
-        itemsCallcall.enqueue(new ItemsCallback());
-
-        CartService service = generateCallService(CartService.class);
-        Call<Carts> call = service.getCartsByFilter("user_id,eq," + userId);
-        call.enqueue(new CartsCallback());
-    }
-
-    private class CartsCallback extends Callback<Carts> {
-
-        @Override
-        public void onResponse(Call<Carts> call, Response<Carts> response) {
-            super.onResponse(call, response);
-
-            if(response.isSuccessful()){
-                final ArrayList<Cart> list = response.body().getCarts();
-                if(!list.isEmpty()) {
-                    ShoppingCartAdapter adapter = new ShoppingCartAdapter(getBaseContext(), list, items);
-                    listView.setAdapter(adapter);
-                    hideProgressBar();
-                }
-            }
-            else {
-                Toast.makeText(ShoppingCartActivity.this, "Unable to get items...", Toast.LENGTH_LONG).show();
-            }
-        }
-
-        @Override
-        public void onFailure(Call<Carts> call, Throwable t) {
-            super.onFailure(call, t);
-            Toast.makeText(ShoppingCartActivity.this, "Ooopsss...", Toast.LENGTH_LONG).show();
-        }
-
+        Call<Items> itemsCall = itemsService.getItems();
+        itemsCall.enqueue(new ItemsCallback());
     }
 
     private class ItemsCallback extends Callback<Items> {
@@ -94,6 +69,9 @@ public class ShoppingCartActivity extends BaseActivity {
             super.onResponse(call, response);
             if(response.isSuccessful()){
                 items = response.body().getItems();
+                CartService service = generateCallService(CartService.class);
+                Call<Carts> cartsCall = service.getCartsByFilter("user_id,eq," + userId);
+                cartsCall.enqueue(new CartsCallback());
             }
             else {
                 Toast.makeText(ShoppingCartActivity.this, "Unable to get items...", Toast.LENGTH_LONG).show();
@@ -102,6 +80,42 @@ public class ShoppingCartActivity extends BaseActivity {
 
         @Override
         public void onFailure(Call<Items> call, Throwable t) {
+            super.onFailure(call, t);
+            Toast.makeText(ShoppingCartActivity.this, "Ooopsss...", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    private class CartsCallback extends Callback<Carts> {
+
+        @Override
+        public void onResponse(Call<Carts> call, Response<Carts> response) {
+            super.onResponse(call, response);
+            if(response.isSuccessful()){
+                final ArrayList<Cart> list = response.body().getCarts();
+                if(!list.isEmpty()) {
+                    for(Cart cart : list) {
+                        for(Item item : items) {
+                            if(item.getId().equals(cart.getId())) {
+                                totalPrice += item.getPrice()*cart.getAmount();
+                            }
+                        }
+                    }
+                    ;
+                    totalPrice = Math.round(totalPrice);
+                    priceTextView.setText(totalPrice+" EUR");
+                    ShoppingCartAdapter adapter = new ShoppingCartAdapter(getBaseContext(), list, items);
+                    listView.setAdapter(adapter);
+                }
+            }
+            else {
+                Toast.makeText(ShoppingCartActivity.this, "Unable to get items...", Toast.LENGTH_LONG).show();
+            }
+            hideProgressBar();
+        }
+
+        @Override
+        public void onFailure(Call<Carts> call, Throwable t) {
             super.onFailure(call, t);
             Toast.makeText(ShoppingCartActivity.this, "Ooopsss...", Toast.LENGTH_LONG).show();
         }

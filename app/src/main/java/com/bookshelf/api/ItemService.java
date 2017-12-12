@@ -23,7 +23,7 @@ public interface ItemService {
     Call<Item> getItemByID(@Path("id") Integer id);
 
     @GET("/api/items?transform=1")
-    Call<Items> getItemByFilter(@Query("filter") String category);
+    Call<Items> getItemByFilter(@Query("filter") String filter);
 
     @GET("/api/users/{id}")
     Call<User> getUserByID(@Path("id") Integer id);
