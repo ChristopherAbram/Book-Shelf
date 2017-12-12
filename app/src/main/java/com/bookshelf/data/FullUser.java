@@ -24,7 +24,6 @@ public class FullUser implements Parcelable {
     private String description;
     private Integer isactive;
     private Integer bin;
-    private String token;
     private String country;
     private String city;
     private String zip;
@@ -58,7 +57,6 @@ public class FullUser implements Parcelable {
         dest.writeString(this.description);
         dest.writeValue(this.isactive);
         dest.writeValue(this.bin);
-        dest.writeString(this.token);
         dest.writeString(this.country);
         dest.writeString(this.city);
         dest.writeString(this.zip);
@@ -86,7 +84,6 @@ public class FullUser implements Parcelable {
         this.description = in.readString();
         this.isactive = (Integer) in.readValue(Integer.class.getClassLoader());
         this.bin = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.token = in.readString();
         this.country = in.readString();
         this.city = in.readString();
         this.zip = in.readString();
@@ -97,7 +94,7 @@ public class FullUser implements Parcelable {
         this.role = in.readString();
     }
 
-    public static final Parcelable.Creator<FullUser> CREATOR = new Parcelable.Creator<FullUser>() {
+    public static final Creator<FullUser> CREATOR = new Creator<FullUser>() {
         @Override
         public FullUser createFromParcel(Parcel source) {
             return new FullUser(source);
