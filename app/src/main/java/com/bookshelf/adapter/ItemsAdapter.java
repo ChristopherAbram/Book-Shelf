@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bookshelf.R;
 import com.bookshelf.data.Item;
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -46,8 +46,8 @@ public class ItemsAdapter extends ArrayAdapter<Item> {
         nameTextView.setText(item.getName());
         priceTextView.setText(item.getPrice()+" EUR");
         if(!item.getPicture().isEmpty()) {
-//            Picasso.with(context).load("https://bookshelf.krzysztofabram.pl/images/miniatures/000000.png").into(imageView);
-//            Glide.with(context).load("https://bookshelf.krzysztofabram.pl/images/miniatures/000000.png").into(imageView);
+            // TODO: replace 000000 with string from database.. if null or empty put 000000..
+              Glide.with(context).load("https://bookshelf.krzysztofabram.pl/images/miniatures/000000.png").into(imageView);
         }
         return rowView;
     }
