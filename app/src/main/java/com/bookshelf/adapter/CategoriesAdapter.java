@@ -11,7 +11,13 @@ import com.bookshelf.data.Category;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class CategoriesAdapter extends ArrayAdapter<Category> {
+
+    @BindView(R.id.category_text_view)
+    TextView categoryTextView;
 
     private Context context;
     private ArrayList<Category> categories = null;
@@ -26,12 +32,9 @@ public class CategoriesAdapter extends ArrayAdapter<Category> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.list_categories, parent, false);
-
+        ButterKnife.bind(this, rowView);
         Category category = categories.get(position);
-
-        TextView categoryTextView = rowView.findViewById(R.id.category_text_view);
         categoryTextView.setText(category.getName());
-
         return rowView;
     }
 

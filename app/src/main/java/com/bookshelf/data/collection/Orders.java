@@ -3,7 +3,7 @@ package com.bookshelf.data.collection;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.bookshelf.data.Item;
+import com.bookshelf.data.Order;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ import lombok.Data;
  */
 @Data
 public class Orders implements Parcelable {
-    private ArrayList<Item> orders;
+    private ArrayList<Order> orders;
 
     @Override
     public int describeContents() {
@@ -27,7 +27,7 @@ public class Orders implements Parcelable {
     }
 
     protected Orders(Parcel in) {
-        this.orders = in.createTypedArrayList(Item.CREATOR);
+        this.orders = in.createTypedArrayList(Order.CREATOR);
     }
 
     public static final Parcelable.Creator<Orders> CREATOR = new Parcelable.Creator<Orders>() {

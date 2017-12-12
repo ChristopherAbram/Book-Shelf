@@ -50,20 +50,20 @@ public class CategoriesActivity extends BaseActivity {
             super.onResponse(call, response);
             if(response.isSuccessful()){
                 final ArrayList<Category> list = response.body().getCategories();
-                CategoriesAdapter adapter = new CategoriesAdapter(getBaseContext(), list);
-                listView.setAdapter(adapter);
+                if(!list.isEmpty()) {
+                    CategoriesAdapter adapter = new CategoriesAdapter(getBaseContext(), list);
+                    listView.setAdapter(adapter);
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Category category = list.get(position);
+                            Intent intent = new Intent(CategoriesActivity.this, ItemsActivity.class);
+                            intent.putExtra("category", category);
+                            startActivity(intent);
+                        }
+                    });
+                }
                 hideProgressBar();
-
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Category category = list.get(position);
-                        Intent intent = new Intent(CategoriesActivity.this, ItemsActivity.class);
-                        intent.putExtra("category", category);
-                        startActivity(intent);
-                    }
-                });
-
             }
             else
                 Toast.makeText(CategoriesActivity.this, "Unable to get items...", Toast.LENGTH_LONG).show();

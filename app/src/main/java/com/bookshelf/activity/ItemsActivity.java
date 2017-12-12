@@ -36,15 +36,11 @@ public class ItemsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_items);
         showProgressBar();
-
         listView = findViewById(R.id.list_view);
-
         Bundle extras = getIntent().getExtras();
-
         category = (Category) extras.get("category");
         searchKeyword = extras.getString("searchKeyword");
         searchType = extras.getString("searchType");
-
         if(category != null) {
             setTitle("Category: "+category.getName());
         }else if(searchKeyword != null) {
@@ -74,8 +70,7 @@ public class ItemsActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home, menu);
-
+        getMenuInflater().inflate(R.menu.search, menu);
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         ComponentName componentName = new ComponentName(getApplicationContext(), SearchActivity.class);
@@ -87,7 +82,6 @@ public class ItemsActivity extends BaseActivity {
                         finish();
                         return false;
                     }
-
                     @Override
                     public boolean onQueryTextChange(String s) {
                         return false;
@@ -102,31 +96,30 @@ public class ItemsActivity extends BaseActivity {
         @Override
         public void onResponse(Call<Items> call, Response<Items> response) {
             super.onResponse(call, response);
-
             if(response.isSuccessful()){
-                final ArrayList<Item>  list = response.body().getItems();
-                ItemsAdapter adapter = new ItemsAdapter(getBaseContext(), list);
-                listView.setAdapter(adapter);
+                final ArrayList<Item> list = response.body().getItems();
+                if(!list.isEmpty()) {
+                    ItemsAdapter adapter = new ItemsAdapter(getBaseContext(), list);
+                    listView.setAdapter(adapter);
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Item item = list.get(position);
+                            Intent intent = new Intent(ItemsActivity.this, ItemActivity.class);
+                            intent.putExtra("item", item);
+                            startActivity(intent);
+                        }
+                    });
+                }
                 hideProgressBar();
-
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Item item = list.get(position);
-                        Intent intent = new Intent(ItemsActivity.this, ItemActivity.class);
-                        intent.putExtra("item", item);
-                        startActivity(intent);
-                    }
-                });
-            }
-            else
+            } else {
                 Toast.makeText(ItemsActivity.this, "Unable to get items...", Toast.LENGTH_LONG).show();
+            }
         }
 
         @Override
         public void onFailure(Call<Items> call, Throwable t) {
             super.onFailure(call, t);
-
             Toast.makeText(ItemsActivity.this, "Ooopsss...", Toast.LENGTH_LONG).show();
         }
     }

@@ -38,6 +38,8 @@ import com.bookshelf.activity.ShoppingCartActivity;
 import com.bookshelf.adapter.ItemsAdapter;
 import com.bookshelf.api.ItemService;
 import com.bookshelf.api.RoleService;
+import com.bookshelf.api.UserService;
+import com.bookshelf.data.CurrentUser;
 import com.bookshelf.data.Item;
 import com.bookshelf.data.Role;
 import com.bookshelf.data.User;
@@ -50,6 +52,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -71,7 +74,7 @@ public class HomeActivity extends AuthorizedActivity
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
 
-    User currentUser = null;
+    int currentUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +96,10 @@ public class HomeActivity extends AuthorizedActivity
     @Override
     public void onStart(){
         super.onStart();
+
+        UserService userService = generateCallService(UserService.class);
+        Call<CurrentUser> callUser = userService.getCurrentUserID();
+        callUser.enqueue(new CurrentUserIdCallback());
 
         RoleService roles = generateCallService(RoleService.class);
         Call<Role> call = roles.getRoleById(1);
@@ -145,6 +152,7 @@ public class HomeActivity extends AuthorizedActivity
 
         if (id == R.id.shopping_cart) {
             Intent intent = new Intent(this, ShoppingCartActivity.class);
+            intent.putExtra("userId", currentUserId);
             startActivity(intent);
             return true;
         }
@@ -159,9 +167,11 @@ public class HomeActivity extends AuthorizedActivity
 
         if (id == R.id.nav_account) {
             Intent intent = new Intent(this, AccountActivity.class);
+            intent.putExtra("userId", currentUserId);
             startActivity(intent);
         } else if (id == R.id.nav_history) {
             Intent intent = new Intent(this, HistoryActivity.class);
+            intent.putExtra("userId", currentUserId);
             startActivity(intent);
         } else if (id == R.id.nav_log_out) {
             showProgressBar();
@@ -210,17 +220,12 @@ public class HomeActivity extends AuthorizedActivity
 
     public void toAccount(View view) {
         Intent intent = new Intent(this, AccountActivity.class);
+        intent.putExtra("userId", currentUserId);
         startActivity(intent);
     }
 
     public void toCategories(View view) {
         Intent intent = new Intent(this, CategoriesActivity.class);
-        startActivity(intent);
-    }
-
-    public void toItem(View view) {
-        Intent intent = new Intent(this, ItemActivity.class);
-        intent.putExtra("itemID", "55555555");
         startActivity(intent);
     }
 
@@ -239,7 +244,6 @@ public class HomeActivity extends AuthorizedActivity
         @Override
         public void onFailure(Call<Role> call, Throwable t) {
             super.onFailure(call, t);
-
             Toast.makeText(HomeActivity.this, "Something went wrong...", Toast.LENGTH_LONG).show();
         }
     }
@@ -264,7 +268,6 @@ public class HomeActivity extends AuthorizedActivity
         @Override
         public void onFailure(Call<Items> call, Throwable t) {
             super.onFailure(call, t);
-
             Toast.makeText(HomeActivity.this, "Ooopsss...", Toast.LENGTH_LONG).show();
         }
 
@@ -300,7 +303,26 @@ public class HomeActivity extends AuthorizedActivity
         @Override
         public void onFailure(Call<Items> call, Throwable t) {
             super.onFailure(call, t);
+            Toast.makeText(HomeActivity.this, "Ooopsss...", Toast.LENGTH_LONG).show();
+        }
+    }
 
+    private class CurrentUserIdCallback extends Callback<CurrentUser> {
+
+        @Override
+        public void onResponse(Call<CurrentUser> call, Response<CurrentUser> response) {
+            super.onResponse(call, response);
+
+            if(response.isSuccessful()){
+                currentUserId = response.body().getId();
+            }
+            else
+                Toast.makeText(HomeActivity.this, "Unable to get current user.", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onFailure(Call<CurrentUser> call, Throwable t) {
+            super.onFailure(call, t);
             Toast.makeText(HomeActivity.this, "Ooopsss...", Toast.LENGTH_LONG).show();
         }
     }

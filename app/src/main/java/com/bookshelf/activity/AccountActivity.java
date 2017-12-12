@@ -6,16 +6,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bookshelf.R;
+import com.bookshelf.activity.authorized.HomeActivity;
+import com.bookshelf.api.UserService;
+import com.bookshelf.data.CurrentUser;
 import com.bookshelf.data.User;
 
 import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Response;
 
-public class AccountActivity extends AppCompatActivity {
+public class AccountActivity extends BaseActivity {
 
     User user = null;
+    int userId;
 
     @BindView(R.id.firstname_lastname_text_view)
     TextView firstnameLastnameTextView;
@@ -39,13 +45,45 @@ public class AccountActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        Bundle extras = getIntent().getExtras();
-        user = (User) extras.get("user");
+        showProgressBar();
 
-        firstnameLastnameTextView.setText(user.getFirstname()+" "+user.getLastname());
-        emailTextView.setText(user.getEmail());
-        genderTextView.setText(user.getSex().toString());
-        birthdateTextView.setText(user.getBdate());
+        Bundle extras = getIntent().getExtras();
+        userId = extras.getInt("userId");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        UserService userService = generateCallService(UserService.class);
+        Call<User> callUser = userService.getUserByID(userId);
+        callUser.enqueue(new UserCallback());
+    }
+
+
+    private class UserCallback extends Callback<User> {
+
+        @Override
+        public void onResponse(Call<User> call, Response<User> response) {
+            super.onResponse(call, response);
+            if(response.isSuccessful()){
+                user = response.body();
+                firstnameLastnameTextView.setText(user.getFirstname()+" "+user.getLastname());
+                emailTextView.setText(user.getEmail());
+                genderTextView.setText(user.getSex().toString());
+                birthdateTextView.setText(user.getBdate());
+                hideProgressBar();
+            }
+            else
+                Toast.makeText(AccountActivity.this, "Unable to get user...", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onFailure(Call<User> call, Throwable t) {
+            super.onFailure(call, t);
+            Toast.makeText(AccountActivity.this, "Ooopsss...", Toast.LENGTH_LONG).show();
+        }
+
     }
 
 }

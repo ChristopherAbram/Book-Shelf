@@ -3,6 +3,7 @@ package com.bookshelf.data.collection;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.bookshelf.data.Cart;
 import com.bookshelf.data.Item;
 
 import java.util.ArrayList;
@@ -12,9 +13,10 @@ import lombok.Data;
 /**
  * Created by Krzysztof on 10.12.2017.
  */
+
 @Data
 public class Carts implements Parcelable {
-    private ArrayList<Item> carts;
+    private ArrayList<Cart> carts;
 
     @Override
     public int describeContents() {
@@ -26,11 +28,8 @@ public class Carts implements Parcelable {
         dest.writeTypedList(this.carts);
     }
 
-    public Carts() {
-    }
-
     protected Carts(Parcel in) {
-        this.carts = in.createTypedArrayList(Item.CREATOR);
+        this.carts = in.createTypedArrayList(Cart.CREATOR);
     }
 
     public static final Parcelable.Creator<Carts> CREATOR = new Parcelable.Creator<Carts>() {
