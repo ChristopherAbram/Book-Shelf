@@ -209,6 +209,7 @@ public class HomeActivity extends AuthorizedActivity
     public void toSaleItems(View view) {
         Intent intent = new Intent(this, ItemsActivity.class);
         intent.putExtra("searchType","sale");
+        intent.putExtra("userId", currentUserId);
         startActivity(intent);
     }
 

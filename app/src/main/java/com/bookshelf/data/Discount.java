@@ -10,6 +10,7 @@ import lombok.Data;
 /**
  * Created by Maksim on 12/5/2017.
  */
+
 @Data
 public class Discount implements Parcelable {
 

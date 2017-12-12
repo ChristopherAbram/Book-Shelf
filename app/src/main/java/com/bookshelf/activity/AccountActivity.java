@@ -1,18 +1,13 @@
 package com.bookshelf.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bookshelf.R;
-import com.bookshelf.activity.authorized.HomeActivity;
 import com.bookshelf.api.UserService;
-import com.bookshelf.data.CurrentUser;
 import com.bookshelf.data.FullUser;
-import com.bookshelf.data.User;
-
-import org.w3c.dom.Text;
+import com.bookshelf.data.collection.FullUsers;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,7 +16,7 @@ import retrofit2.Response;
 
 public class AccountActivity extends BaseActivity {
 
-    FullUser user = null;
+    FullUser fullUser = null;
     int userId;
 
     @BindView(R.id.firstname_lastname_text_view)
@@ -57,23 +52,28 @@ public class AccountActivity extends BaseActivity {
         super.onStart();
 
         UserService userService = generateCallService(UserService.class);
-        Call<FullUser> callUser = userService.getFullUserByID(userId);
-        Toast.makeText(AccountActivity.this, "userId: "+userId, Toast.LENGTH_LONG).show();
+        Call<FullUsers> callUser = userService.getFullUsersByID("id,eq,"+userId);
         callUser.enqueue(new FullUserCallback());
     }
 
 
-    private class FullUserCallback extends Callback<FullUser> {
+    private class FullUserCallback extends Callback<FullUsers> {
 
         @Override
-        public void onResponse(Call<FullUser> call, Response<FullUser> response) {
+        public void onResponse(Call<FullUsers> call, Response<FullUsers> response) {
             super.onResponse(call, response);
             if(response.isSuccessful()){
-                user = response.body();
-                firstnameLastnameTextView.setText(user.getFirstname()+" "+user.getLastname());
-                emailTextView.setText(user.getEmail());
-                genderTextView.setText(user.getSex().toString());
-                birthdateTextView.setText(user.getBdate());
+
+                Toast.makeText(AccountActivity.this, response.body().toString(), Toast.LENGTH_LONG).show();
+                //TODO: don't know why it's null, have to use collection because /api/fullusers need to use @Query filter, instead of @Path id.
+                // I think it's due to data.FullUser maybe something is wrong.
+
+//                fullUser = response.body().getFullUsers().get(0);
+//                firstnameLastnameTextView.setText(fullUser.getFirstname()+" "+fullUser.getLastname());
+//                emailTextView.setText(fullUser.getEmail());
+//                genderTextView.setText(fullUser.getSex()+"");
+//                birthdateTextView.setText(fullUser.getBdate());
+//                addressTextView.setText(fullUser.getPhone()+"\n"+fullUser.getStreet()+"\n"+fullUser.getCity()+"\n"+fullUser.getZip()+"\n"+fullUser.getCountry());
                 hideProgressBar();
             }
             else
@@ -81,7 +81,7 @@ public class AccountActivity extends BaseActivity {
         }
 
         @Override
-        public void onFailure(Call<FullUser> call, Throwable t) {
+        public void onFailure(Call<FullUsers> call, Throwable t) {
             super.onFailure(call, t);
             Toast.makeText(AccountActivity.this, "Ooopsss...", Toast.LENGTH_LONG).show();
         }
