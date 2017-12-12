@@ -2,21 +2,20 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="wrap_content">
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="16"
         android:orientation="vertical"
         android:padding="@dimen/activity_padding">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.25"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center">
 
@@ -37,8 +36,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.75"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center">
 
@@ -53,8 +51,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="14"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center|top">
 
@@ -147,6 +144,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:checked="true"
+                        android:textColor="@color/colorAlmostWhite"
                         android:text="Male" />
 
                     <RadioButton
@@ -154,7 +152,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@color/colorAlmostWhite"
                         android:text="Female" />
+
                 </RadioGroup>
 
             </LinearLayout>
@@ -219,22 +219,25 @@
                     android:id="@+id/bdate"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorAlmostWhite"
                     android:ems="10"
                     android:inputType="date" />
 
             </LinearLayout>
 
+            <Button
+                android:id="@+id/sign_in"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/round_button"
+                android:backgroundTint="@color/colorAccent"
+                android:text="Next"
+                android:textStyle="bold" />
+
         </LinearLayout>
 
-        <Button
-            android:id="@+id/sign_in"
-            android:layout_width="250dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/round_button"
-            android:backgroundTint="@color/colorAccent"
-            android:text="Next"
-            android:textStyle="bold" />
+
 
     </LinearLayout>
 </ScrollView>
