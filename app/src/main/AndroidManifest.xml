@@ -17,6 +17,11 @@
             android:name="com.bookshelf.security.CustomTrustOkHttpGlideModule"
             android:value="GlideModule" />
 
+
+        <meta-data
+            android:name="com.bookshelf.security.CustomTrustOkHttpGlideModule"
+            android:value="GlideModule" />
+
         <!-- Add your live Simplify public key here -->
         <meta-data
             android:name="com.bookshelf.payment.apiKey"

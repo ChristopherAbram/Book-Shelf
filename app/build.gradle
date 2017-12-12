@@ -39,9 +39,13 @@ dependencies {
 
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compileOnly "org.projectlombok:lombok:1.16.18"
     compile 'com.android.support:cardview-v7:21.0.+'
     compile 'com.android.support:recyclerview-v7:21.0.+'
     //compile 'com.squareup.picasso:picasso:2.5.2'
+
+    compile 'com.github.bumptech.glide:glide:3.8.0'
+    compile "com.github.bumptech.glide:okhttp3-integration:1.5.0"
 
     compile 'com.github.bumptech.glide:glide:3.8.0'
     compile "com.github.bumptech.glide:okhttp3-integration:1.5.0"

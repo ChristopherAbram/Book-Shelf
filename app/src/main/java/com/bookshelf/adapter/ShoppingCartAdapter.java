@@ -5,15 +5,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.bookshelf.R;
 import com.bookshelf.data.Cart;
 import com.bookshelf.data.Item;
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ShoppingCartAdapter extends ArrayAdapter<Cart>  {
+
+    @BindView(R.id.image_view)
+    ImageView imageView;
 
     @BindView(R.id.name_text_view)
     TextView nameTextView;
@@ -49,6 +55,12 @@ public class ShoppingCartAdapter extends ArrayAdapter<Cart>  {
         nameTextView.setText(item.getName());
         amountTextView.setText(cart.getAmount().toString());
         priceTextView.setText(item.getPrice().toString());
+
+        if(!item.getPicture().isEmpty()) {
+            Glide.with(context).load("https://bookshelf.krzysztofabram.pl/images/miniatures/"+item.getPicture()+".png").into(imageView);
+        }else {
+            Glide.with(context).load("https://bookshelf.krzysztofabram.pl/images/miniatures/000000.png").into(imageView);
+        }
 
         return rowView;
     }

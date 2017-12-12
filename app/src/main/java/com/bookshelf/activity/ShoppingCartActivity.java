@@ -112,7 +112,6 @@ public class ShoppingCartActivity extends BaseActivity {
                             }
                         }
                     }
-                    ;
                     totalPrice = Math.round(totalPrice);
                     priceTextView.setText(totalPrice+" EUR");
                     ShoppingCartAdapter adapter = new ShoppingCartAdapter(getBaseContext(), list, items);

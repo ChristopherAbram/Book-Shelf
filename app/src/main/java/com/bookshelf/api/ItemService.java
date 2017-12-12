@@ -3,6 +3,7 @@ package com.bookshelf.api;
 import com.bookshelf.data.Category;
 import com.bookshelf.data.Item;
 import com.bookshelf.data.User;
+import com.bookshelf.data.collection.Discounts;
 import com.bookshelf.data.collection.Items;
 
 import retrofit2.Call;
@@ -30,5 +31,8 @@ public interface ItemService {
 
     @GET("/api/categories/{id}")
     Call<Category> getCategoriesByID(@Path("id") Integer id);
+
+    @GET("/api/discounts?transform=1")
+    Call<Discounts> getDiscountsByUserID(@Query("filter[]") String filter,@Query("filter[]") String filter2,@Query("satisfy") String satisfy);
 
 }

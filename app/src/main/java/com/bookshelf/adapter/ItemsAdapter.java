@@ -46,8 +46,9 @@ public class ItemsAdapter extends ArrayAdapter<Item> {
         nameTextView.setText(item.getName());
         priceTextView.setText(item.getPrice()+" EUR");
         if(!item.getPicture().isEmpty()) {
-            // TODO: replace 000000 with string from database.. if null or empty put 000000..
-              Glide.with(context).load("https://bookshelf.krzysztofabram.pl/images/miniatures/000000.png").into(imageView);
+            Glide.with(context).load("https://bookshelf.krzysztofabram.pl/images/miniatures/"+item.getPicture()+".png").into(imageView);
+        }else {
+            Glide.with(context).load("https://bookshelf.krzysztofabram.pl/images/miniatures/000000.png").into(imageView);
         }
         return rowView;
     }
