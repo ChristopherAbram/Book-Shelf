@@ -78,6 +78,10 @@ public class ItemActivity extends BaseActivity {
     protected void onStart(){
         super.onStart();
 
+        nameTextView.setText(item.getName());
+        longDescTextView.setText(item.getDescription());
+        priceTextView.setText(item.getPrice().toString());
+
         ItemService service = generateCallService(ItemService.class);
 
         Call<User> callUser = service.getUserByID(item.getUserId());
