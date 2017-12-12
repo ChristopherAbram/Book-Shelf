@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ import com.bookshelf.data.User;
 import com.bookshelf.data.collection.Categories;
 import com.bookshelf.data.collection.Items;
 import com.bookshelf.data.collection.Users;
+import com.bumptech.glide.Glide;
 
 import org.w3c.dom.Text;
 
@@ -38,6 +40,9 @@ public class ItemActivity extends BaseActivity {
 
     Item item = null;
     User merchant = null;
+
+    @BindView(R.id.image_view)
+    ImageView imageView;
 
     @BindView(R.id.name_text_view)
     TextView nameTextView;
@@ -81,6 +86,11 @@ public class ItemActivity extends BaseActivity {
         nameTextView.setText(item.getName());
         longDescTextView.setText(item.getDescription());
         priceTextView.setText(item.getPrice().toString());
+        if(!item.getPicture().isEmpty()) {
+            Glide.with(getBaseContext()).load("https://bookshelf.krzysztofabram.pl/images/"+item.getPicture()+".png").into(imageView);
+        }else {
+            Glide.with(getBaseContext()).load("https://bookshelf.krzysztofabram.pl/images/000000.png").into(imageView);
+        }
 
         ItemService service = generateCallService(ItemService.class);
 
