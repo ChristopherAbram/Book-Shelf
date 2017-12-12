@@ -7,4 +7,15 @@
     <string name="remove_shopping_cart_item"><u>Remove</u></string>
     <string name="new_to_bookshelf">New to BookShelf?</string>
 
+    <string name="pay_with_a_card">Pay with a card</string>
+    <string name="name_lastname">Your name and last name</string>
+    <string name="pay_button">Pay</string>
+    <string name="confirm">Confirm</string>
+    <string name="success">PAYMENT SUCCESS</string>
+    <string name="fail">PAYMENT FAIL</string>
+    <string name="fail_detail">Please change your payment method.</string>
+    <string name="go_back">Go Back</string>
+    <string name="ref_id">Ref ID:\u0020</string>
+    <string name="quantity">Quantity:\u0020</string>
+
 </resources>

@@ -9,4 +9,13 @@
     <color name="colorAlmostWhite">#f0f0f0</color>
     <color name="colorSemiWhite">#dcdcdc</color>
     <color name="colorGrayWhite">#a0a0a0</color>
+
+    <color name="icon">#666666</color>
+
+    <color name="white">#FFFF</color>
+    <color name="semiBlack">#1A1A1A</color>
+    <color name="tintWhite">#DFDFDF</color>
+    <color name="silver">#CFCFCF</color>
+    <color name="red">#bf1016</color>
+    <color name="green">#01a337</color>
 </resources>

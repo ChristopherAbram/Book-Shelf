@@ -2,20 +2,14 @@ package com.bookshelf.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bookshelf.R;
-
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-
-import com.bookshelf.adapter.ItemsAdapter;
+import com.bookshelf.activity.authorized.payment.CardFormActivity;
 import com.bookshelf.adapter.ShoppingCartAdapter;
 import com.bookshelf.api.CartService;
 import com.bookshelf.api.ItemService;
@@ -23,6 +17,8 @@ import com.bookshelf.data.Cart;
 import com.bookshelf.data.Item;
 import com.bookshelf.data.collection.Carts;
 import com.bookshelf.data.collection.Items;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,6 +48,21 @@ public class ShoppingCartActivity extends BaseActivity {
         showProgressBar();
         Bundle extras = getIntent().getExtras();
         userId = extras.getInt("userId");
+
+        payButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Item item = new Item();
+                item.setName("BookShelf: Your shopping.");
+                item.setAmount(1);
+                item.setPrice(totalPrice);
+
+                Intent resultIntent = new Intent(getBaseContext(), CardFormActivity.class);
+                resultIntent.putExtra("item", item);
+                startActivity(resultIntent);
+                finish();
+            }
+        });
     }
 
     @Override

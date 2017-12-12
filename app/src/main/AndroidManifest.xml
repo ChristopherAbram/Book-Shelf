@@ -17,6 +17,25 @@
             android:name="com.bookshelf.security.CustomTrustOkHttpGlideModule"
             android:value="GlideModule" />
 
+        <!-- Add your live Simplify public key here -->
+        <meta-data
+            android:name="com.bookshelf.payment.apiKey"
+            android:value="sbpb_ZjkwYmYwNmEtNDQ4Yy00ZGRhLWIxN2MtMzY1NDgzN2M3ODc2" />
+
+        <!-- Add your Android Pay public key here -->
+        <meta-data
+            android:name="com.bookshelf.payment.androidPayPublicKey"
+            android:value="BICzC3AqJbov+uNoWRR6C+E/Z9am2EVeLARsX38W7ixVqr2BhsB934PeO6SFlN0dMBXzfK6aKJmKXcYW0/+eTKg=" />
+
+        <!-- Enables the Android Pay API -->
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity android:name=".activity.LandingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -92,6 +111,12 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity android:name=".activity.authorized.SignOutActivity" />
+        <activity android:name=".activity.authorized.payment.CardFormActivity" />
+        <activity android:name=".activity.authorized.payment.AndroidPayActivity" />
+        <activity android:name=".activity.authorized.payment.ResultActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.authorized.payment.ResultFailedActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

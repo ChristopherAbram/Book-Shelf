@@ -28,6 +28,23 @@ public class Item implements Parcelable {
     @SerializedName("category_id")
     private Integer categoryId;
 
+    public String convertToWalletPrice(){
+        int p = (int)(price * 100);
+        return Integer.toString(p);
+    }
+
+    public static String priceToString(float price){
+        return Float.toString(price);
+    }
+
+    public String priceToString(){
+        return priceToString(price);
+    }
+
+    public float getTotalPrice(){
+        return amount * price;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -48,6 +65,8 @@ public class Item implements Parcelable {
         dest.writeValue(this.userId);
         dest.writeValue(this.categoryId);
     }
+
+    public Item(){}
 
     protected Item(Parcel in) {
         this.id = (Integer) in.readValue(Integer.class.getClassLoader());
