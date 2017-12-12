@@ -1,6 +1,7 @@
 package com.bookshelf.api;
 
 import com.bookshelf.data.CurrentUser;
+import com.bookshelf.data.FullUser;
 import com.bookshelf.data.Item;
 import com.bookshelf.data.User;
 import com.bookshelf.data.collection.Categories;
@@ -24,4 +25,7 @@ public interface UserService {
 
     @POST("/api/users")
     Call<String> addUser(@Body User user);
+
+    @GET("/api/fullusers/{id}")
+    Call<FullUser> getFullUserByID(@Path("id") Integer id);
 }

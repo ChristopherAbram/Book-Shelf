@@ -9,6 +9,7 @@ import com.bookshelf.R;
 import com.bookshelf.activity.authorized.HomeActivity;
 import com.bookshelf.api.UserService;
 import com.bookshelf.data.CurrentUser;
+import com.bookshelf.data.FullUser;
 import com.bookshelf.data.User;
 
 import org.w3c.dom.Text;
@@ -20,7 +21,7 @@ import retrofit2.Response;
 
 public class AccountActivity extends BaseActivity {
 
-    User user = null;
+    FullUser user = null;
     int userId;
 
     @BindView(R.id.firstname_lastname_text_view)
@@ -56,15 +57,16 @@ public class AccountActivity extends BaseActivity {
         super.onStart();
 
         UserService userService = generateCallService(UserService.class);
-        Call<User> callUser = userService.getUserByID(userId);
-        callUser.enqueue(new UserCallback());
+        Call<FullUser> callUser = userService.getFullUserByID(userId);
+        Toast.makeText(AccountActivity.this, "userId: "+userId, Toast.LENGTH_LONG).show();
+        callUser.enqueue(new FullUserCallback());
     }
 
 
-    private class UserCallback extends Callback<User> {
+    private class FullUserCallback extends Callback<FullUser> {
 
         @Override
-        public void onResponse(Call<User> call, Response<User> response) {
+        public void onResponse(Call<FullUser> call, Response<FullUser> response) {
             super.onResponse(call, response);
             if(response.isSuccessful()){
                 user = response.body();
@@ -79,7 +81,7 @@ public class AccountActivity extends BaseActivity {
         }
 
         @Override
-        public void onFailure(Call<User> call, Throwable t) {
+        public void onFailure(Call<FullUser> call, Throwable t) {
             super.onFailure(call, t);
             Toast.makeText(AccountActivity.this, "Ooopsss...", Toast.LENGTH_LONG).show();
         }

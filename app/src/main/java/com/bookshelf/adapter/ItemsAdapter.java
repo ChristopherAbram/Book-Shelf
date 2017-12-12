@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.bookshelf.R;
 import com.bookshelf.data.Item;
-import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
